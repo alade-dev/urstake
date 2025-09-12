@@ -1,0 +1,14 @@
+[package]
+name = "defi_urstake"
+version = "1.0.0"
+authors = []
+
+[addresses]
+urstake_addr = "0x6e61dc7e5a207d5470d195312bf7fd99124dd8593bbb11094a0a145a89c29923"
+
+[dependencies]
+AptosFramework = { git = "https://github.com/aptos-labs/aptos-core.git", rev = "testnet", subdir = "aptos-move/framework/aptos-framework" }
+AptosStdlib = { git = "https://github.com/aptos-labs/aptos-core.git", subdir = "aptos-move/framework/aptos-stdlib", rev = "testnet" }
+MoveStdlib = { git = "https://github.com/aptos-labs/aptos-core.git", subdir = "aptos-move/framework/move-stdlib", rev = "testnet" }
+
+[dev-dependencies]
