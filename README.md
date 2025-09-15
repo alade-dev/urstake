@@ -4,7 +4,7 @@ A comprehensive liquid staking platform on Aptos blockchain that enables users t
 
 <div align="center">
 
-![UrStake Logo](client/public/icon.png)
+![UrStake Logo](client/public/urstake.png)
 
 [![Aptos](https://img.shields.io/badge/Built%20on-Aptos-FF6B6B?style=for-the-badge&logo=aptos)](https://aptoslabs.com/)
 [![Move](https://img.shields.io/badge/Smart%20Contracts-Move-4FC3F7?style=for-the-badge)](https://move-language.github.io/move/)

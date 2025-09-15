@@ -114,15 +114,7 @@ const Hero = () => {
             >
               {connected ? "Go to Dashboard" : "Launch App"}
             </Button>
-            <Link to="/faucet">
-              <Button
-                variant="outline"
-                size="lg"
-                className="bg-transparent border-blue-500/50 text-blue-200 hover:bg-blue-600/20 px-8 py-3 rounded-lg font-medium"
-              >
-                Get Test Tokens
-              </Button>
-            </Link>
+
             <Button
               variant="default"
               size="lg"

@@ -858,7 +858,7 @@ const StakingInterface = () => {
                 <h1 className="text-4xl font-bold text-white mb-2">
                   Aptos liquid staking
                 </h1>
-                <div className="flex items-center space-x-3">
+                <div className="flex items-center flex-col space-y-3">
                   <Link to="/dashboard">
                     <Button
                       variant="outline"

@@ -296,6 +296,9 @@ const Faucet = () => {
                       <p className="text-yellow-200 text-sm mt-1">
                         Connect your wallet to see your address and easily copy
                         it for the faucets.
+                        <span className="text-yellow-200 block mt-3">
+                          Easy mint of USDC token for staking purposes
+                        </span>
                       </p>
                     </div>
                   </div>
