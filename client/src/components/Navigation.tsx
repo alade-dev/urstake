@@ -31,7 +31,7 @@ const Navigation = () => {
   ];
 
   return (
-    <div className="fixed top-0 left-0 right-0 z-50 px-6 lg:px-44 pt-3">
+    <div className="fixed top-0 left-0 right-0 z-50 px-6 lg:px-44 pt-1">
       <nav className="bg-gray-900/80 backdrop-blur-md border border-gray-700 rounded-full shadow-xl">
         <div className="container mx-auto px-4 lg:px-8">
           <div className="flex items-center justify-between h-16">

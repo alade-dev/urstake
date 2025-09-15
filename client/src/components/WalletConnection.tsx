@@ -50,7 +50,7 @@ const WalletConnection = () => {
       await connect(walletName);
       setIsDialogOpen(false);
     } catch (error) {
-      console.error("Failed to connect wallet:", error);
+      // console.error("Failed to connect wallet:", error);
     } finally {
       setIsConnecting(false);
     }
@@ -65,7 +65,7 @@ const WalletConnection = () => {
         navigate("/");
       }
     } catch (error) {
-      console.error("Failed to disconnect wallet:", error);
+      // console.error("Failed to disconnect wallet:", error);
       toast.error("Failed to disconnect wallet");
     }
   };

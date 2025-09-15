@@ -355,7 +355,7 @@ const Dashboard = () => {
           setPositionsLoading(false);
         }
       } catch (error) {
-        console.error("Error fetching dashboard data:", error);
+        // console.error("Error fetching dashboard data:", error);
       } finally {
         if (isMounted) {
           setLoading(false);
@@ -514,7 +514,7 @@ const Dashboard = () => {
 
         setTransactionHistory(realTransactions);
       } catch (error) {
-        console.error("Error fetching transaction history:", error);
+        // console.error("Error fetching transaction history:", error);
         setTransactionHistory([]);
       } finally {
         setTransactionsLoading(false);

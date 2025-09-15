@@ -32,24 +32,24 @@ const Index = () => {
             <div className="space-y-4">
               <h4 className="font-semibold text-white">Platform</h4>
               <div className="space-y-2">
-                <a
-                  href="#"
+                <Link
+                  to="/stake"
                   className="block text-gray-400 hover:text-white transition-colors"
                 >
                   Staking Pools
-                </a>
-                <a
-                  href="#"
+                </Link>
+                <Link
+                  to="/staking-positions"
                   className="block text-gray-400 hover:text-white transition-colors"
                 >
-                  Yield Farming
-                </a>
-                <a
-                  href="#"
+                  My Positions
+                </Link>
+                <Link
+                  to="/transaction-history"
                   className="block text-gray-400 hover:text-white transition-colors"
                 >
-                  Analytics
-                </a>
+                  Transaction History
+                </Link>
               </div>
             </div>
 
@@ -75,7 +75,9 @@ const Index = () => {
                   API Reference
                 </a>
                 <a
-                  href="#"
+                  href="https://github.com/urstake"
+                  target="_blank"
+                  rel="noopener noreferrer"
                   className="block text-gray-400 hover:text-white transition-colors"
                 >
                   Github
@@ -87,19 +89,25 @@ const Index = () => {
               <h4 className="font-semibold text-white">Community</h4>
               <div className="space-y-2">
                 <a
-                  href="#"
+                  href="https://discord.gg/alade_dev"
+                  target="_blank"
+                  rel="noopener noreferrer"
                   className="block text-gray-400 hover:text-white transition-colors"
                 >
                   Discord
                 </a>
                 <a
-                  href="#"
+                  href="https://twitter.com/urstake_defi"
+                  target="_blank"
+                  rel="noopener noreferrer"
                   className="block text-gray-400 hover:text-white transition-colors"
                 >
                   Twitter
                 </a>
                 <a
-                  href="#"
+                  href="https://t.me/creativi8"
+                  target="_blank"
+                  rel="noopener noreferrer"
                   className="block text-gray-400 hover:text-white transition-colors"
                 >
                   Telegram

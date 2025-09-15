@@ -59,7 +59,7 @@ const WalletProviderInner: React.FC<WalletProviderProps> = ({ children }) => {
 
             stAptBalance = octasToApt(userStakeInfo[0] || 0);
           } catch (error) {
-            console.log("No stake info found (user hasn't staked yet)");
+            // console.log("No stake info found (user hasn't staked yet)");
           }
 
           // Get USDC balance
@@ -81,10 +81,10 @@ const WalletProviderInner: React.FC<WalletProviderProps> = ({ children }) => {
 
             // console.log("Real USDC balance found:", usdcBalance);
           } catch (error) {
-            console.log(
-              "Real USDC balance not found, using APT as substitute:",
-              error
-            );
+            // console.log(
+            //   "Real USDC balance not found, using APT as substitute:",
+            //   error
+            // );
 
             // Fallback to APT as USDC substitute for testing
             try {
@@ -111,13 +111,13 @@ const WalletProviderInner: React.FC<WalletProviderProps> = ({ children }) => {
                 }
               }
             } catch (aptError) {
-              console.error(
-                "Error fetching APT balance for USDC substitute:",
-                aptError
-              );
-              console.log(
-                "No USDC balance found (user hasn't registered for USDC yet)"
-              );
+              // console.error(
+              //   "Failed to fetch APT balance for USDC substitute:",
+              //   aptError
+              // );
+              // console.log(
+              //   "Unable to fetch balance. Setting USDC to 0 for testing."
+              // );
             }
           }
 
@@ -128,7 +128,7 @@ const WalletProviderInner: React.FC<WalletProviderProps> = ({ children }) => {
             lstUSDC: 0, // TODO: Fetch lstUSDC balance when implemented
           });
         } catch (error) {
-          console.error("Error fetching balance:", error);
+          // console.error("Error fetching balance:", error);
           setBalance({
             apt: 0,
             usdc: 0,
@@ -156,9 +156,9 @@ const WalletProviderInner: React.FC<WalletProviderProps> = ({ children }) => {
     try {
       // The connection is handled by the WalletSelector component
       // This function is kept for compatibility with the existing interface
-      console.log(`Attempting to connect to ${walletName}`);
+      // console.log(`Attempting to connect to ${walletName}`);
     } catch (error) {
-      console.error("Failed to connect wallet:", error);
+      // console.error("Failed to connect wallet:", error);
       throw error;
     } finally {
       setConnecting(false);
@@ -175,13 +175,13 @@ const WalletProviderInner: React.FC<WalletProviderProps> = ({ children }) => {
         lstUSDC: 0,
       });
     } catch (error) {
-      console.error("Failed to disconnect wallet:", error);
+      // console.error("Failed to disconnect wallet:", error);
     }
   };
 
   const switchNetwork = async (newNetwork: "mainnet" | "testnet") => {
     // Network switching would be handled by the wallet
-    console.log(`Switching to ${newNetwork}`);
+    // console.log(`Switching to ${newNetwork}`);
   };
 
   const getSupportedWallets = (): WalletInfo[] => {
@@ -241,7 +241,7 @@ const WalletProviderInner: React.FC<WalletProviderProps> = ({ children }) => {
 
           stAptBalance = octasToApt(userStakeInfo[0] || 0);
         } catch (error) {
-          console.log("No stake info found");
+          // console.log("No stake info found");
         }
 
         setBalance({
@@ -251,7 +251,7 @@ const WalletProviderInner: React.FC<WalletProviderProps> = ({ children }) => {
           lstUSDC: 0,
         });
       } catch (error) {
-        console.error("Error refreshing balance:", error);
+        // console.error("Error refreshing balance:", error);
       }
     }
   };

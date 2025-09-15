@@ -60,7 +60,7 @@ export const useUSDC = () => {
           formattedBalance: usdcBalance.toFixed(2),
         };
       } catch (error) {
-        console.error("Error fetching USDC balance:", error);
+        // console.error("Error fetching USDC balance:", error);
         return { balance: 0, formattedBalance: "0.00" };
       }
     },
@@ -76,7 +76,7 @@ export const useUSDC = () => {
       const balance = await getUSDCBalance();
       setUsdcBalance(balance);
     } catch (error) {
-      console.error("Error refreshing USDC balance:", error);
+      // console.error("Error refreshing USDC balance:", error);
     } finally {
       setLoading(false);
     }
@@ -160,7 +160,7 @@ export const useUSDC = () => {
         txHash: transaction.hash,
       };
     } catch (error) {
-      console.error("USDC transfer error:", error);
+      // console.error("USDC transfer error:", error);
       return {
         success: false,
         error:
@@ -185,7 +185,7 @@ export const useUSDC = () => {
       });
       return transaction.hash;
     } catch (error) {
-      console.error("USDC registration error:", error);
+      // console.error("USDC registration error:", error);
       throw new Error(
         error instanceof Error ? error.message : "Registration failed"
       );
@@ -225,11 +225,10 @@ export const useUSDC = () => {
         };
       }
 
-      console.log("Minting USDC:", {
-        amount: amount,
-        amountInMicroUsdc: amountInMicroUsdc,
-        toAddress: account.address.toString(),
-      });
+      // console.log("Minting USDC:", {
+      //   recipient: account.address,
+      //   amount: amount,
+      // });
 
       const transaction = await signAndSubmitTransaction({
         sender: account.address,
@@ -247,7 +246,7 @@ export const useUSDC = () => {
         txHash: transaction.hash,
       };
     } catch (error) {
-      console.error("USDC mint error:", error);
+      // console.error("USDC mint error:", error);
       return {
         success: false,
         error:

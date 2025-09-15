@@ -1,3 +1,4 @@
+/* eslint-disable no-useless-catch */
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { useCallback, useRef } from "react";
 import { useWallet } from "@aptos-labs/wallet-adapter-react";
@@ -77,9 +78,8 @@ export const useUSDCStaking = () => {
       }
 
       // console.log("Staking USDC:", {
-      //   amount,
-      //   amountInMicroUsdc,
-      //   user: account.address.toString(),
+      //   recipient: account.address,
+      //   amount: amount,
       // });
 
       const transaction = await signAndSubmitTransaction({
@@ -89,6 +89,8 @@ export const useUSDCStaking = () => {
           functionArguments: [amountInMicroUsdc.toString()],
         },
       });
+
+      // console.log("USDC stake transaction hash:", transaction.hash);
 
       return {
         success: true,
@@ -145,9 +147,9 @@ export const useUSDCStaking = () => {
           if (userInfo && userInfo.pendingRequests > 0) {
             const requestIndex = userInfo.pendingRequests - 1;
 
-            console.log(
-              `Completing instant USDC unstaking at index ${requestIndex}`
-            );
+            // console.log(
+            //   `Completing instant USDC unstaking at index ${requestIndex}`
+            // );
 
             const completeTx = await signAndSubmitTransaction({
               sender: account.address,
@@ -157,25 +159,25 @@ export const useUSDCStaking = () => {
               },
             });
 
-            console.log("Instant USDC unstaking completed:", completeTx.hash);
+            // console.log("Instant USDC unstaking completed:", completeTx.hash);
             return {
               success: true,
               txHash: completeTx.hash,
             };
           } else {
-            console.warn(
-              "No pending USDC requests found after creating unstaking request"
-            );
+            // console.warn(
+            //   "No pending USDC requests found after creating unstaking request"
+            // );
             return {
               success: true,
               txHash: requestTx.hash,
             };
           }
         } catch (completeError) {
-          console.error(
-            "Failed to complete instant USDC unstaking:",
-            completeError
-          );
+          // console.error(
+          //   "Failed to complete instant USDC unstaking:",
+          //   completeError
+          // );
           return {
             success: false,
             error: `USDC unstaking request created but completion failed: ${
@@ -287,9 +289,9 @@ export const useUSDCStaking = () => {
         // Open circuit breaker if too many failures
         if (cache.consecutiveFailures >= cache.CIRCUIT_BREAKER_THRESHOLD) {
           cache.isCircuitOpen = true;
-          console.warn(
-            `Circuit breaker opened after ${cache.consecutiveFailures} consecutive failures`
-          );
+          // console.warn(
+          //   `Circuit breaker opened after ${cache.consecutiveFailures} consecutive failures`
+          // );
         }
       }
     },
@@ -307,7 +309,7 @@ export const useUSDCStaking = () => {
         // Reset circuit breaker
         cache.isCircuitOpen = false;
         cache.consecutiveFailures = 0;
-        console.log("Circuit breaker reset, attempting API calls again");
+        // console.log("Circuit breaker reset, attempting API calls again");
       }
     }
 
@@ -341,7 +343,7 @@ export const useUSDCStaking = () => {
       Number.isFinite(cache.protocolStats.exchangeRate);
 
     if (hasExchangeRate && hasProtocolStats) {
-      console.log("📋 USDC data available in cache, returning immediately");
+      // console.log("📋 USDC data available in cache, returning immediately");
       return {
         exchangeRate: cache.exchangeRate,
         protocolStats: cache.protocolStats,
@@ -355,14 +357,14 @@ export const useUSDCStaking = () => {
   // Clear invalid cache data
   const clearInvalidCache = useCallback(() => {
     if (cache.exchangeRate !== null && !Number.isFinite(cache.exchangeRate)) {
-      console.log("Clearing invalid USDC exchange rate cache");
+      // console.log("Clearing invalid USDC exchange rate cache");
       cache.exchangeRate = null;
     }
     if (
       cache.protocolStats !== null &&
       !Number.isFinite(cache.protocolStats.exchangeRate)
     ) {
-      console.log("Clearing invalid USDC protocol stats cache");
+      // console.log("Clearing invalid USDC protocol stats cache");
       cache.protocolStats = null;
     }
   }, []);
@@ -377,9 +379,9 @@ export const useUSDCStaking = () => {
 
       // Check if we should skip API calls due to rate limiting (unless force refresh)
       if (!forceRefresh && shouldSkipApiCall()) {
-        console.log(
-          "Skipping USDC exchange rate API call due to rate limiting"
-        );
+        // console.log(
+        //   "Skipping USDC exchange rate API call due to rate limiting"
+        // );
         return cache.exchangeRate !== null ? cache.exchangeRate : 1.0;
       }
 
@@ -397,19 +399,19 @@ export const useUSDCStaking = () => {
       ) {
         // Check if cached exchange rate is valid (no NaN)
         if (Number.isFinite(cache.exchangeRate)) {
-          console.log(
-            "Returning cached USDC exchange rate:",
-            cache.exchangeRate
-          );
+          // console.log(
+          //   "Returning cached USDC exchange rate:",
+          //   cache.exchangeRate
+          // );
           return cache.exchangeRate;
         } else {
-          console.log("Cached USDC exchange rate is NaN, clearing cache...");
+          // console.log("Cached USDC exchange rate is NaN, clearing cache...");
           cache.exchangeRate = null; // Clear bad cache
         }
       }
 
       try {
-        console.log("Fetching fresh USDC exchange rate from contract...");
+        // console.log("Fetching fresh USDC exchange rate from contract...");
         const result = (await aptos.view({
           payload: {
             function: `${USDC_STAKING_CONFIG.MODULE_ID}::${USDC_STAKING_CONFIG.FUNCTIONS.GET_USDC_EXCHANGE_RATE}`,
@@ -434,13 +436,13 @@ export const useUSDCStaking = () => {
 
         cache.lastFetchExchangeRate = now;
         resetFailureCount(); // Reset on successful call
-        console.log("Fresh USDC exchange rate fetched:", cache.exchangeRate);
+        // console.log("Fresh USDC exchange rate fetched:", cache.exchangeRate);
         return cache.exchangeRate;
       } catch (error) {
-        console.warn(
-          "Get USDC exchange rate error (using cached/default):",
-          error
-        );
+        // console.warn(
+        //   "Get USDC exchange rate error (using cached/default):",
+        //   error
+        // );
 
         // Check if this is a contract not found/initialized error
         const errorMessage =
@@ -450,9 +452,9 @@ export const useUSDCStaking = () => {
           errorMessage.includes("does not exist") ||
           errorMessage.includes("Resource not found")
         ) {
-          console.warn(
-            "USDC staking contract not deployed or initialized. Using default values."
-          );
+          // console.warn(
+          //   "USDC staking contract not deployed or initialized. Using default values."
+          // );
           cache.exchangeRate = 1.0;
           cache.lastFetchExchangeRate = now;
           return 1.0;
@@ -483,9 +485,9 @@ export const useUSDCStaking = () => {
 
     // Check if we should skip API calls due to rate limiting
     if (shouldSkipApiCall()) {
-      console.log(
-        "Skipping user USDC stake info API call due to rate limiting"
-      );
+      // console.log(
+      //   "Skipping user USDC stake info API call due to rate limiting"
+      // );
       return {
         stUSDCBalance: 0,
         pendingRequests: 0,
@@ -520,7 +522,7 @@ export const useUSDCStaking = () => {
         pendingRewards: microUsdcToUsdc(rewards),
       };
     } catch (error) {
-      console.warn("Get user USDC stake info error (using default):", error);
+      // console.warn("Get user USDC stake info error (using default):", error);
 
       updateCacheOnFailure(error);
 
@@ -542,9 +544,9 @@ export const useUSDCStaking = () => {
 
       // Check if we should skip API calls due to rate limiting (unless force refresh)
       if (!forceRefresh && shouldSkipApiCall()) {
-        console.log(
-          "Skipping USDC protocol stats API call due to rate limiting"
-        );
+        // console.log(
+        //   "Skipping USDC protocol stats API call due to rate limiting"
+        // );
         return (
           cache.protocolStats || {
             totalStaked: 0,
@@ -570,21 +572,21 @@ export const useUSDCStaking = () => {
       ) {
         // Check if cached data is valid (no NaN values)
         if (Number.isFinite(cache.protocolStats.exchangeRate)) {
-          console.log(
-            "Returning cached USDC protocol stats:",
-            cache.protocolStats
-          );
+          // console.log(
+          //   "Returning cached USDC protocol stats:",
+          //   cache.protocolStats
+          // );
           return cache.protocolStats;
         } else {
-          console.log(
-            "Cached USDC protocol stats contains NaN, clearing cache..."
-          );
+          // console.log(
+          //   "Cached USDC protocol stats contains NaN, clearing cache..."
+          // );
           cache.protocolStats = null; // Clear bad cache
         }
       }
 
       try {
-        console.log("Fetching fresh USDC protocol stats from contract...");
+        // console.log("Fetching fresh USDC protocol stats from contract...");
         const result = (await aptos.view({
           payload: {
             function: `${USDC_STAKING_CONFIG.MODULE_ID}::${USDC_STAKING_CONFIG.FUNCTIONS.GET_USDC_PROTOCOL_STATS}`,
@@ -621,10 +623,10 @@ export const useUSDCStaking = () => {
         // console.log("Fresh USDC protocol stats fetched:", cache.protocolStats);
         return cache.protocolStats;
       } catch (error) {
-        console.warn(
-          "Get USDC protocol stats error (using cached/default):",
-          error
-        );
+        // console.warn(
+        //   "Get USDC protocol stats error (using cached/default):",
+        //   error
+        // );
 
         // Check if this is a contract not found/initialized error
         const errorMessage =
@@ -634,9 +636,9 @@ export const useUSDCStaking = () => {
           errorMessage.includes("does not exist") ||
           errorMessage.includes("Resource not found")
         ) {
-          console.warn(
-            "USDC staking contract not deployed or initialized. Using default values."
-          );
+          // console.warn(
+          //   "USDC staking contract not deployed or initialized. Using default values."
+          // );
           const defaultStats = {
             totalStaked: 0,
             totalStUSDCSupply: 0,
@@ -695,7 +697,7 @@ export const useUSDCStaking = () => {
       // Return empty array since we can't get actual request details without a contract view function
       return [];
     } catch (error) {
-      console.error("Get pending USDC unstaking requests error:", error);
+      // console.error("Get pending USDC unstaking requests error:", error);
       return [];
     }
   };
@@ -827,7 +829,7 @@ export const useUSDCStaking = () => {
 
         return parsedTransactions;
       } catch (error) {
-        console.error("Error fetching USDC transaction history:", error);
+        // console.error("Error fetching USDC transaction history:", error);
         return [];
       }
     },
@@ -884,7 +886,7 @@ export const useUSDCStaking = () => {
       // });
       return { exchangeRate, protocolStats };
     } catch (error) {
-      console.error("❌ USDC force refresh failed:", error);
+      // console.error("❌ USDC force refresh failed:", error);
       throw error;
     }
   }, [getUSDCExchangeRate, getUSDCProtocolStats]);

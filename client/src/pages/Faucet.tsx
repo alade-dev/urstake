@@ -146,7 +146,7 @@ const Faucet = () => {
         await registerForUSDC();
       } catch (registrationError) {
         // Registration might fail if already registered, that's okay
-        console.log("Registration result:", registrationError);
+        // console.log("Registration result:", registrationError);
       }
 
       // Then mint USDC
@@ -170,7 +170,7 @@ const Faucet = () => {
         });
       }
     } catch (error) {
-      console.error("Minting error:", error);
+      // console.error("Minting error:", error);
       toast({
         title: "Minting Failed",
         description:

@@ -329,7 +329,7 @@ const StakingInterface = () => {
     stakeAmountNum / parseFloat(currentPool.conversionRate);
 
   const handleMaxStake = () => {
-    console.log(currentPool.available);
+    // console.log(currentPool.available);
     setStakeAmount(currentPool.available.toString());
   };
 

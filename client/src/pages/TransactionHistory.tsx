@@ -336,7 +336,7 @@ const TransactionHistory = () => {
           setAllTransactions(realTransactions);
         }
       } catch (error) {
-        console.error("Error fetching transaction history:", error);
+        // console.error("Error fetching transaction history:", error);
         if (isMounted) {
           setAllTransactions([]);
         }

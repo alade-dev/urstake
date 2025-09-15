@@ -1,3 +1,4 @@
+/* eslint-disable no-useless-catch */
 import { AptosAccount, AptosClient } from "aptos";
 
 export interface PriceData {
@@ -52,7 +53,7 @@ class PriceService {
 
       return price;
     } catch (error) {
-      console.error("Failed to fetch APT price:", error);
+      // console.error("Failed to fetch APT price:", error);
 
       // Fall back to cached price if available
       if (this.cachedPrice) {
@@ -97,7 +98,7 @@ class PriceService {
 
       return actualPrice;
     } catch (error) {
-      console.error("Hermes API error:", error);
+      // console.error("Hermes API error:", error);
       throw error;
     }
   }
@@ -125,7 +126,7 @@ class PriceService {
       // Return the VAA (Verifiable Action Approval) data for on-chain updates
       return data.map((item: { vaa: string }) => item.vaa);
     } catch (error) {
-      console.error("Failed to get price update data:", error);
+      // console.error("Failed to get price update data:", error);
       throw error;
     }
   }

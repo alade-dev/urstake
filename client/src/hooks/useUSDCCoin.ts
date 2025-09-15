@@ -71,7 +71,7 @@ export const useUSDCCoin = () => {
           formattedBalance: usdcBalance.toFixed(2),
         };
       } catch (error) {
-        console.error("Error fetching USDC coin balance:", error);
+        // console.error("Error fetching USDC coin balance:", error);
         return { balance: 0, formattedBalance: "0.00" };
       }
     },
@@ -110,7 +110,7 @@ export const useUSDCCoin = () => {
 
       return transaction.hash;
     } catch (error) {
-      console.error("Error registering for USDC coin:", error);
+      // console.error("Error registering for USDC coin:", error);
       throw new Error(
         error instanceof Error
           ? error.message
@@ -151,7 +151,7 @@ export const useUSDCCoin = () => {
         txHash: transaction.hash,
       };
     } catch (error) {
-      console.error("Error minting USDC:", error);
+      // console.error("Error minting USDC:", error);
       return {
         success: false,
         error:
@@ -244,7 +244,7 @@ export const useUSDCCoin = () => {
           coin.asset_type === `${CONTRACT_CONFIG.MODULE_ADDRESS}::usdc::USDC`
       );
     } catch (error) {
-      console.error("Error checking USDC registration:", error);
+      // console.error("Error checking USDC registration:", error);
       return false;
     }
   }, [account]);

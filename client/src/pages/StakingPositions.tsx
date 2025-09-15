@@ -149,7 +149,7 @@ const StakingPositions = () => {
           setPositionsLoading(false);
         }
       } catch (error) {
-        console.error("Error fetching staking data:", error);
+        // console.error("Error fetching staking data:", error);
       } finally {
         if (isMounted) {
           setLoading(false);

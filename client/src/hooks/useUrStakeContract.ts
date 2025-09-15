@@ -1,3 +1,4 @@
+/* eslint-disable no-useless-catch */
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { useCallback } from "react";
 import { useWallet } from "@aptos-labs/wallet-adapter-react";
@@ -688,7 +689,7 @@ export const useUrStakeContract = () => {
 
         return parsedTransactions;
       } catch (error) {
-        console.error("Error fetching transaction history:", error);
+        // console.error("Error fetching transaction history:", error);
         return [];
       }
     },
@@ -719,7 +720,7 @@ export const useUrStakeContract = () => {
       );
       return await getExternalPrice();
     } catch (error) {
-      console.error("Error fetching APT price from contract:", error);
+      // console.error("Error fetching APT price from contract:", error);
 
       // Fallback to external price service
       try {
@@ -728,7 +729,7 @@ export const useUrStakeContract = () => {
         );
         return await getExternalPrice();
       } catch (fallbackError) {
-        console.error("Error fetching APT price from external service:", error);
+        // console.error("Error fetching APT price from external service:", error);
         return 0; // Ultimate fallback
       }
     }
@@ -740,7 +741,7 @@ export const useUrStakeContract = () => {
 
     // Prevent rapid force refresh calls
     if (now - aptCache.lastForceRefresh < aptCache.FORCE_REFRESH_COOLDOWN) {
-      console.log("⏰ Force refresh on cooldown, using cached data");
+      // console.log("⏰ Force refresh on cooldown, using cached data");
       return {
         exchangeRate: aptCache.exchangeRate || 1.0,
         protocolStats: aptCache.protocolStats || {
@@ -752,9 +753,9 @@ export const useUrStakeContract = () => {
       };
     }
 
-    console.log(
-      "🔄 Force refreshing APT data - clearing cache and fetching fresh..."
-    );
+    // console.log(
+    //   "🔄 Force refreshing APT data - clearing cache and fetching fresh..."
+    // );
 
     aptCache.lastForceRefresh = now;
 
@@ -772,13 +773,13 @@ export const useUrStakeContract = () => {
         getExchangeRate(true),
         getProtocolStats(true),
       ]);
-      console.log("✅ Force refresh completed:", {
-        exchangeRate,
-        protocolStats,
-      });
+      // console.log("✅ Force refresh completed:", {
+      //   exchangeRate,
+      //   protocolStats,
+      // });
       return { exchangeRate, protocolStats };
     } catch (error) {
-      console.error("❌ Force refresh failed:", error);
+      // console.error("❌ Force refresh failed:", error);
       throw error;
     }
   }, [getExchangeRate, getProtocolStats]);

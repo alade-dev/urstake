@@ -31,7 +31,7 @@ const WalletModal = ({ isOpen, onClose }: WalletModalProps) => {
       await connect(walletName);
       onClose();
     } catch (error) {
-      console.error("Failed to connect wallet:", error);
+      // console.error("Failed to connect wallet:", error);
     } finally {
       setIsConnecting(false);
     }
