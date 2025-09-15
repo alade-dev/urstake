@@ -73,8 +73,11 @@ const TransactionHistory = () => {
     connected,
   } = useUrStakeContract();
 
-  const { getPendingUSDCUnstakingRequests, getTxUrl: getUSDCTxUrl } =
-    useUSDCStaking();
+  const {
+    getPendingUSDCUnstakingRequests,
+    getTxUrl: getUSDCTxUrl,
+    getUSDCTransactionHistory,
+  } = useUSDCStaking();
   const [searchTerm, setSearchTerm] = useState("");
   const [selectedType, setSelectedType] = useState("all");
   const [allTransactions, setAllTransactions] = useState<Transaction[]>([]);
@@ -96,14 +99,21 @@ const TransactionHistory = () => {
 
       try {
         // Fetch both pending requests and historical transactions
-        const [pendingRequests, historicalTxs, pendingUSDCRequests] =
-          await Promise.all([
-            getPendingUnstakingRequests(),
-            getTransactionHistory ? getTransactionHistory(walletAddress) : [],
-            getPendingUSDCUnstakingRequests
-              ? getPendingUSDCUnstakingRequests()
-              : [],
-          ]);
+        const [
+          pendingRequests,
+          historicalTxs,
+          pendingUSDCRequests,
+          usdcHistoricalTxs,
+        ] = await Promise.all([
+          getPendingUnstakingRequests(),
+          getTransactionHistory ? getTransactionHistory(walletAddress) : [],
+          getPendingUSDCUnstakingRequests
+            ? getPendingUSDCUnstakingRequests()
+            : [],
+          getUSDCTransactionHistory
+            ? getUSDCTransactionHistory(walletAddress)
+            : [],
+        ]);
 
         const realTransactions: Transaction[] = [];
 
@@ -227,6 +237,73 @@ const TransactionHistory = () => {
 
             realTransactions.push({
               id: Date.now() + index + 1000,
+              type: transactionType,
+              asset,
+              amount,
+              stTokensReceived,
+              aptToReceive,
+              aptReceived,
+              usdcToReceive,
+              usdcReceived,
+              rewardsClaimed,
+              timestamp: new Date(
+                Math.floor(parseInt(tx.timestamp) / 1000)
+              ).toISOString(),
+              status: tx.success ? "completed" : "pending",
+              txHash: tx.hash,
+              fee: (
+                (parseInt(tx.gas_used || "0") *
+                  parseInt(tx.gas_unit_price || "100")) /
+                100000000
+              ).toFixed(6),
+            });
+          });
+        }
+
+        // Convert USDC historical transactions
+        if (Array.isArray(usdcHistoricalTxs)) {
+          usdcHistoricalTxs.forEach((tx: any, index: number) => {
+            const payload = tx.payload;
+            const functionName = payload?.function || "";
+
+            let transactionType:
+              | "stake"
+              | "unstake_request"
+              | "unstake_complete"
+              | "usdc_stake"
+              | "usdc_unstake_request"
+              | "usdc_unstake_complete"
+              | "usdc_claim_rewards" = "usdc_stake";
+            let asset = "USDC";
+            const amount = tx.parsedAmount || "0";
+            let stTokensReceived = tx.stTokensReceived || "";
+            const aptToReceive = "";
+            const aptReceived = "";
+            let usdcToReceive = tx.usdcToReceive || "";
+            let usdcReceived = tx.usdcReceived || "";
+            let rewardsClaimed = tx.rewardsClaimed || "";
+
+            // USDC transaction processing
+            if (functionName.includes("stake_usdc")) {
+              transactionType = "usdc_stake";
+              asset = "USDC";
+              stTokensReceived = tx.stTokensReceived || amount;
+            } else if (functionName.includes("request_unstake_usdc")) {
+              transactionType = "usdc_unstake_request";
+              asset = "stUSDC";
+              usdcToReceive = tx.usdcToReceive || amount;
+            } else if (functionName.includes("complete_unstaking_usdc")) {
+              transactionType = "usdc_unstake_complete";
+              asset = "stUSDC";
+              usdcReceived = tx.usdcReceived || amount;
+            } else if (functionName.includes("claim_rewards")) {
+              transactionType = "usdc_claim_rewards";
+              asset = "stUSDC";
+              rewardsClaimed = tx.rewardsClaimed || amount;
+            }
+
+            realTransactions.push({
+              id: Date.now() + index + 2000, // Different offset for USDC transactions
               type: transactionType,
               asset,
               amount,

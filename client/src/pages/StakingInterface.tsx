@@ -8,6 +8,8 @@ import { useWalletPrompt } from "@/hooks/useWalletPrompt";
 import { UsdcValue, UsdcBalanceCard } from "@/components/UsdcValue";
 import { UsdValue } from "@/components/UsdValue";
 import { CONTRACT_CONFIG, USDC_STAKING_CONFIG } from "@/config/contract";
+import aptosLogo from "@/assets/logo/aptos.png";
+import usdcLogo from "@/assets/logo/usdc.png";
 // import { testContractFunctions } from "@/utils/contractTest";
 import {
   Card,
@@ -1179,9 +1181,9 @@ const StakingInterface = () => {
                             variant={
                               selectedAsset === asset ? "default" : "outline"
                             }
-                            className={`h-16 flex flex-col relative ${
+                            className={`h-20 flex flex-col items-center justify-center relative p-3 ${
                               selectedAsset === asset
-                                ? "bg-blue-600 text-white"
+                                ? "bg-white text-black"
                                 : "bg-gray-700 border-gray-600 text-gray-300 hover:bg-gray-600"
                             }`}
                             onClick={() => {
@@ -1190,7 +1192,16 @@ const StakingInterface = () => {
                               getUSDCCoinBalance();
                             }}
                           >
-                            <span className="font-medium">{asset}</span>
+                            <div className="flex items-center space-x-2 mb-1">
+                              <div className="w-6 h-6 flex-shrink-0">
+                                <img
+                                  src={asset === "APT" ? aptosLogo : usdcLogo}
+                                  alt={asset}
+                                  className="w-full h-full object-contain"
+                                />
+                              </div>
+                              <span className="font-medium">{asset}</span>
+                            </div>
                             <span className="text-xs opacity-80">
                               {`${pool.apy} APY`}
                             </span>

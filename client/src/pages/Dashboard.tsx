@@ -37,6 +37,7 @@ import {
   ExternalLink,
   CheckCircle,
   AlertCircle,
+  Loader2,
 } from "lucide-react";
 import { Link } from "react-router-dom";
 
@@ -304,6 +305,8 @@ const Dashboard = () => {
   const [pendingUSDCUnstakingRequests, setPendingUSDCUnstakingRequests] =
     useState([]);
   const [loading, setLoading] = useState(true);
+  const [positionsLoading, setPositionsLoading] = useState(true);
+  const [transactionsLoading, setTransactionsLoading] = useState(true);
   const [aptPrice, setAptPrice] = useState(0); // Default fallback price
 
   // Fetch real protocol and user data only when needed
@@ -313,6 +316,8 @@ const Dashboard = () => {
     const fetchData = async () => {
       if (!connected || !walletAddress) {
         setLoading(false);
+        setPositionsLoading(false);
+        setTransactionsLoading(false);
         return;
       }
 
@@ -346,12 +351,15 @@ const Dashboard = () => {
           if (usdcStats) setUSDCProtocolStats(usdcStats);
           if (userUSDCInfo) setUserUSDCStakeInfo(userUSDCInfo);
           setPendingUSDCUnstakingRequests(pendingUSDCRequests);
+
+          setPositionsLoading(false);
         }
       } catch (error) {
         console.error("Error fetching dashboard data:", error);
       } finally {
         if (isMounted) {
           setLoading(false);
+          setPositionsLoading(false);
         }
       }
     };
@@ -436,7 +444,12 @@ const Dashboard = () => {
   // Fetch real transaction data
   useEffect(() => {
     const fetchTransactionHistory = async () => {
-      if (!connected || !walletAddress) return;
+      if (!connected || !walletAddress) {
+        setTransactionsLoading(false);
+        return;
+      }
+
+      setTransactionsLoading(true);
 
       try {
         // In a real implementation, you would fetch from an indexer or transaction service
@@ -503,6 +516,8 @@ const Dashboard = () => {
       } catch (error) {
         console.error("Error fetching transaction history:", error);
         setTransactionHistory([]);
+      } finally {
+        setTransactionsLoading(false);
       }
     };
 
@@ -526,6 +541,74 @@ const Dashboard = () => {
   const copyToClipboard = (text: string) => {
     navigator.clipboard.writeText(text);
   };
+
+  // Loading skeleton components
+  const PositionLoadingSkeleton = () => (
+    <div className="space-y-4">
+      {[1, 2].map((i) => (
+        <div
+          key={i}
+          className="p-4 rounded-lg border border-gray-700 bg-gray-800/30 animate-pulse"
+        >
+          <div className="flex items-center justify-between mb-3">
+            <div className="flex items-center space-x-3">
+              <div className="w-10 h-10 rounded-full bg-gray-600"></div>
+              <div>
+                <div className="h-4 bg-gray-600 rounded w-20 mb-2"></div>
+                <div className="h-3 bg-gray-700 rounded w-16"></div>
+              </div>
+            </div>
+            <div className="text-right">
+              <div className="h-4 bg-gray-600 rounded w-16 mb-2"></div>
+              <div className="h-5 bg-gray-700 rounded w-12"></div>
+            </div>
+          </div>
+          <div className="grid grid-cols-2 gap-4">
+            <div>
+              <div className="h-3 bg-gray-700 rounded w-20 mb-1"></div>
+              <div className="h-4 bg-gray-600 rounded w-24"></div>
+            </div>
+            <div>
+              <div className="h-3 bg-gray-700 rounded w-20 mb-1"></div>
+              <div className="h-4 bg-gray-600 rounded w-16"></div>
+            </div>
+          </div>
+        </div>
+      ))}
+    </div>
+  );
+
+  const TransactionLoadingSkeleton = () => (
+    <div className="space-y-4">
+      {[1, 2, 3].map((i) => (
+        <div
+          key={i}
+          className="p-4 rounded-lg border border-gray-700 bg-gray-800/30 animate-pulse"
+        >
+          <div className="flex items-center justify-between mb-2">
+            <div className="flex items-center space-x-3">
+              <div className="w-8 h-8 rounded-full bg-gray-600"></div>
+              <div>
+                <div className="h-4 bg-gray-600 rounded w-20 mb-1"></div>
+                <div className="h-3 bg-gray-700 rounded w-24"></div>
+              </div>
+            </div>
+            <div className="text-right">
+              <div className="h-4 bg-gray-600 rounded w-16 mb-1"></div>
+              <div className="h-5 bg-gray-700 rounded w-12"></div>
+            </div>
+          </div>
+          <div className="flex items-center justify-between">
+            <div className="h-3 bg-gray-700 rounded w-32"></div>
+            <div className="flex space-x-2">
+              <div className="w-3 h-3 bg-gray-700 rounded"></div>
+              <div className="w-3 h-3 bg-gray-700 rounded"></div>
+            </div>
+          </div>
+        </div>
+      ))}
+    </div>
+  );
 
   return (
     <div className="min-h-screen relative overflow-hidden bg-gradient-to-br from-gray-900 via-gray-800 to-gray-900">
@@ -713,7 +796,12 @@ const Dashboard = () => {
               <Card className="bg-gray-800/50 border-gray-700 backdrop-blur-sm">
                 <CardHeader>
                   <CardTitle className="flex items-center justify-between text-white">
-                    Active Staking Positions
+                    <div className="flex items-center space-x-2">
+                      <span>Active Staking Positions</span>
+                      {positionsLoading && (
+                        <Loader2 className="h-4 w-4 animate-spin text-gray-400" />
+                      )}
+                    </div>
                     <Link to={"/staking-positions"}>
                       <Button
                         variant="ghost"
@@ -729,99 +817,104 @@ const Dashboard = () => {
                   </CardDescription>
                 </CardHeader>
                 <CardContent>
-                  <div className="space-y-4">
-                    {stakingPositions
-                      .filter((position) => position.active)
-                      .map((position) => (
-                        <div
-                          key={position.asset}
-                          className="p-4 rounded-lg border border-gray-700 bg-gray-800/30"
-                        >
-                          <div className="flex items-center justify-between mb-3">
-                            <div className="flex items-center space-x-3">
-                              {position.asset === "stAPT" ? (
-                                <div className="w-10 h-10 rounded-full bg-white flex items-center justify-center p-1.5">
-                                  <img
-                                    src={stAptosLogo}
-                                    alt="stAptos"
-                                    className="w-full h-full object-contain"
-                                  />
+                  {positionsLoading ? (
+                    <PositionLoadingSkeleton />
+                  ) : (
+                    <div className="space-y-4">
+                      {stakingPositions
+                        .filter((position) => position.active)
+                        .map((position) => (
+                          <div
+                            key={position.asset}
+                            className="p-4 rounded-lg border border-gray-700 bg-gray-800/30"
+                          >
+                            <div className="flex items-center justify-between mb-3">
+                              <div className="flex items-center space-x-3">
+                                {position.asset === "stAPT" ? (
+                                  <div className="w-10 h-10 rounded-full bg-white flex items-center justify-center p-1.5">
+                                    <img
+                                      src={stAptosLogo}
+                                      alt="stAptos"
+                                      className="w-full h-full object-contain"
+                                    />
+                                  </div>
+                                ) : position.asset === "stUSDC" ? (
+                                  <div className="w-10 h-10 rounded-full bg-white flex items-center justify-center p-1.5">
+                                    <img
+                                      src={usdcLogo}
+                                      alt="stUSDC"
+                                      className="w-full h-full object-contain"
+                                    />
+                                  </div>
+                                ) : (
+                                  <div className="w-10 h-10 rounded-full bg-gradient-to-r from-blue-500 to-purple-600 flex items-center justify-center text-white font-semibold text-sm">
+                                    {position.asset.slice(0, 3)}
+                                  </div>
+                                )}
+                                <div>
+                                  <p className="font-medium text-white">
+                                    {position.asset}
+                                  </p>
+                                  <p className="text-sm text-gray-400">
+                                    {position.staked} staked
+                                  </p>
                                 </div>
-                              ) : position.asset === "stUSDC" ? (
-                                <div className="w-10 h-10 rounded-full bg-white flex items-center justify-center p-1.5">
-                                  <img
-                                    src={usdcLogo}
-                                    alt="stUSDC"
-                                    className="w-full h-full object-contain"
-                                  />
-                                </div>
-                              ) : (
-                                <div className="w-10 h-10 rounded-full bg-gradient-to-r from-blue-500 to-purple-600 flex items-center justify-center text-white font-semibold text-sm">
-                                  {position.asset.slice(0, 3)}
-                                </div>
-                              )}
-                              <div>
+                              </div>
+                              <div className="text-right">
                                 <p className="font-medium text-white">
-                                  {position.asset}
+                                  ${position.stakedValue}
                                 </p>
-                                <p className="text-sm text-gray-400">
-                                  {position.staked} staked
+                                <div className="flex items-center space-x-2">
+                                  <Badge
+                                    variant="secondary"
+                                    className="bg-green-900 text-green-300"
+                                  >
+                                    {position.apy}
+                                  </Badge>
+                                </div>
+                              </div>
+                            </div>
+
+                            <div className="grid grid-cols-2 gap-4 text-sm">
+                              <div>
+                                <span className="text-gray-400">
+                                  Underlying APT:
+                                </span>
+                                <p className="text-white font-mono">
+                                  {position.underlyingAmount} APT
+                                </p>
+                              </div>
+                              <div>
+                                <span className="text-gray-400">
+                                  Daily Rewards:
+                                </span>
+                                <p className="text-green-400 font-medium">
+                                  +${position.dailyRewards}
                                 </p>
                               </div>
                             </div>
-                            <div className="text-right">
-                              <p className="font-medium text-white">
-                                ${position.stakedValue}
-                              </p>
-                              <div className="flex items-center space-x-2">
-                                <Badge
-                                  variant="secondary"
-                                  className="bg-green-900 text-green-300"
-                                >
-                                  {position.apy}
-                                </Badge>
-                              </div>
-                            </div>
                           </div>
-
-                          <div className="grid grid-cols-2 gap-4 text-sm">
-                            <div>
-                              <span className="text-gray-400">
-                                Underlying APT:
-                              </span>
-                              <p className="text-white font-mono">
-                                {position.underlyingAmount} APT
-                              </p>
-                            </div>
-                            <div>
-                              <span className="text-gray-400">
-                                Daily Rewards:
-                              </span>
-                              <p className="text-green-400 font-medium">
-                                +${position.dailyRewards}
-                              </p>
-                            </div>
-                          </div>
-                        </div>
-                      ))}
-                  </div>
-
-                  {stakingPositions.filter((p) => p.active).length === 0 && (
-                    <div className="flex flex-col items-center justify-center py-12 text-gray-400">
-                      <Wallet className="h-12 w-12 mb-4 opacity-50" />
-                      <p className="text-lg font-medium mb-2">
-                        No Active Positions
-                      </p>
-                      <p className="text-sm mb-4">
-                        Start staking to see your positions here
-                      </p>
-                      <Link to={"/stake"}>
-                        <Button className="bg-blue-600 hover:bg-blue-700">
-                          Start Staking
-                        </Button>
-                      </Link>
+                        ))}
                     </div>
                   )}
+
+                  {!positionsLoading &&
+                    stakingPositions.filter((p) => p.active).length === 0 && (
+                      <div className="flex flex-col items-center justify-center py-12 text-gray-400">
+                        <Wallet className="h-12 w-12 mb-4 opacity-50" />
+                        <p className="text-lg font-medium mb-2">
+                          No Active Positions
+                        </p>
+                        <p className="text-sm mb-4">
+                          Start staking to see your positions here
+                        </p>
+                        <Link to={"/stake"}>
+                          <Button className="bg-blue-600 hover:bg-blue-700">
+                            Start Staking
+                          </Button>
+                        </Link>
+                      </div>
+                    )}
                 </CardContent>
               </Card>
 
@@ -829,7 +922,12 @@ const Dashboard = () => {
               <Card className="bg-gray-800/50 border-gray-700 backdrop-blur-sm">
                 <CardHeader>
                   <CardTitle className="flex items-center justify-between text-white">
-                    Transaction History
+                    <div className="flex items-center space-x-2">
+                      <span>Transaction History</span>
+                      {transactionsLoading && (
+                        <Loader2 className="h-4 w-4 animate-spin text-gray-400" />
+                      )}
+                    </div>
                     <Link to="/transaction-history">
                       <Button
                         variant="ghost"
@@ -859,7 +957,9 @@ const Dashboard = () => {
                     </TabsList>
 
                     <TabsContent value="all" className="space-y-4 mt-4">
-                      {transactionHistory.length === 0 ? (
+                      {transactionsLoading ? (
+                        <TransactionLoadingSkeleton />
+                      ) : transactionHistory.length === 0 ? (
                         <div className="flex flex-col items-center justify-center py-12 text-gray-400">
                           <Activity className="h-12 w-12 mb-4 opacity-50" />
                           <p className="text-lg font-medium mb-2">
@@ -883,7 +983,9 @@ const Dashboard = () => {
                     </TabsContent>
 
                     <TabsContent value="completed" className="space-y-4 mt-4">
-                      {completedTransactions.length === 0 ? (
+                      {transactionsLoading ? (
+                        <TransactionLoadingSkeleton />
+                      ) : completedTransactions.length === 0 ? (
                         <div className="flex flex-col items-center justify-center py-8 text-gray-400">
                           <CheckCircle className="h-8 w-8 mb-2 opacity-50" />
                           <p className="text-sm">No completed transactions</p>
@@ -902,7 +1004,9 @@ const Dashboard = () => {
                     </TabsContent>
 
                     <TabsContent value="pending" className="space-y-4 mt-4">
-                      {pendingTransactions.length === 0 ? (
+                      {transactionsLoading ? (
+                        <TransactionLoadingSkeleton />
+                      ) : pendingTransactions.length === 0 ? (
                         <div className="flex flex-col items-center justify-center py-8 text-gray-400">
                           <AlertCircle className="h-8 w-8 mb-2 opacity-50" />
                           <p className="text-sm">No pending transactions</p>

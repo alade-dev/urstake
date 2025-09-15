@@ -32,6 +32,7 @@ import {
   Zap,
   Calendar,
   DollarSign,
+  Loader2,
 } from "lucide-react";
 import { Link } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
@@ -96,6 +97,8 @@ const StakingPositions = () => {
   const [pendingUSDCUnstakingRequests, setPendingUSDCUnstakingRequests] =
     useState([]);
   const [loading, setLoading] = useState(true);
+  const [positionsLoading, setPositionsLoading] = useState(true);
+  const [overviewLoading, setOverviewLoading] = useState(true);
   const [aptPrice, setAptPrice] = useState(0); // Default fallback price
 
   // Fetch real protocol and user data
@@ -106,6 +109,8 @@ const StakingPositions = () => {
       // Don't require wallet connection to view the page
       if (!connected || !walletAddress) {
         setLoading(false);
+        setPositionsLoading(false);
+        setOverviewLoading(false);
         return;
       }
 
@@ -139,12 +144,17 @@ const StakingPositions = () => {
           if (usdcStats) setUSDCProtocolStats(usdcStats);
           if (userUSDCInfo) setUserUSDCStakeInfo(userUSDCInfo);
           setPendingUSDCUnstakingRequests(pendingUSDCRequests);
+
+          setOverviewLoading(false);
+          setPositionsLoading(false);
         }
       } catch (error) {
         console.error("Error fetching staking data:", error);
       } finally {
         if (isMounted) {
           setLoading(false);
+          setOverviewLoading(false);
+          setPositionsLoading(false);
         }
       }
     };
@@ -226,6 +236,80 @@ const StakingPositions = () => {
     navigator.clipboard.writeText(text);
   };
 
+  // Loading skeleton components
+  const OverviewCardsSkeleton = () => (
+    <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
+      {[1, 2, 3].map((i) => (
+        <Card
+          key={i}
+          className="bg-gray-800/50 border-gray-700 backdrop-blur-sm"
+        >
+          <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
+            <div className="h-4 bg-gray-600 rounded w-20 animate-pulse"></div>
+            <div className="h-4 w-4 bg-gray-600 rounded animate-pulse"></div>
+          </CardHeader>
+          <CardContent>
+            <div className="h-8 bg-gray-600 rounded w-24 mb-2 animate-pulse"></div>
+            <div className="h-3 bg-gray-700 rounded w-32 animate-pulse"></div>
+          </CardContent>
+        </Card>
+      ))}
+    </div>
+  );
+
+  const PositionsLoadingSkeleton = () => (
+    <div className="space-y-6 max-h-[600px] overflow-y-auto">
+      {[1, 2].map((i) => (
+        <div
+          key={i}
+          className="p-6 rounded-lg border border-gray-700 bg-gray-800/30 animate-pulse"
+        >
+          <div className="flex items-center justify-between mb-6">
+            <div className="flex items-center space-x-4">
+              <div className="w-16 h-16 rounded-full bg-gray-600"></div>
+              <div>
+                <div className="h-6 bg-gray-600 rounded w-20 mb-2"></div>
+                <div className="h-4 bg-gray-700 rounded w-32"></div>
+              </div>
+            </div>
+            <div className="text-right">
+              <div className="h-8 bg-gray-600 rounded w-24 mb-2"></div>
+              <div className="h-6 bg-gray-700 rounded w-16"></div>
+            </div>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-6">
+            {[1, 2, 3].map((j) => (
+              <div key={j} className="p-4 bg-gray-700/30 rounded-lg">
+                <div className="flex items-center justify-between mb-2">
+                  <div className="h-3 bg-gray-700 rounded w-20"></div>
+                  <div className="h-4 w-4 bg-gray-700 rounded"></div>
+                </div>
+                <div className="h-6 bg-gray-600 rounded w-24 mb-1"></div>
+                <div className="h-3 bg-gray-700 rounded w-20"></div>
+              </div>
+            ))}
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-6">
+            {[1, 2, 3].map((j) => (
+              <div key={j}>
+                <div className="h-3 bg-gray-700 rounded w-20 mb-1"></div>
+                <div className="h-5 bg-gray-600 rounded w-16"></div>
+              </div>
+            ))}
+          </div>
+
+          <div className="flex flex-col sm:flex-row gap-3 pt-4 border-t border-gray-700">
+            {[1, 2, 3].map((j) => (
+              <div key={j} className="flex-1 h-10 bg-gray-600 rounded"></div>
+            ))}
+          </div>
+        </div>
+      ))}
+    </div>
+  );
+
   return (
     <div className="min-h-screen relative overflow-hidden bg-gradient-to-br from-gray-900 via-gray-800 to-gray-900">
       {/* Background */}
@@ -283,82 +367,92 @@ const StakingPositions = () => {
                 </div>
                 <div className="text-right">
                   <p className="text-sm text-gray-400">Total Portfolio Value</p>
-                  <p className="text-3xl font-bold text-white">
-                    $
-                    {(
-                      safeAptBalance * aptPrice +
-                      totalStaked +
-                      totalUSDCStaked
-                    ).toFixed(2)}
-                  </p>
+                  {overviewLoading ? (
+                    <div className="flex items-center space-x-2">
+                      <div className="h-8 bg-gray-600 rounded w-32 animate-pulse"></div>
+                      <Loader2 className="h-5 w-5 animate-spin text-gray-400" />
+                    </div>
+                  ) : (
+                    <p className="text-3xl font-bold text-white">
+                      $
+                      {(
+                        safeAptBalance * aptPrice +
+                        totalStaked +
+                        totalUSDCStaked
+                      ).toFixed(2)}
+                    </p>
+                  )}
                 </div>
               </div>
             </div>
 
             {/* Overview Cards */}
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
-              <Card className="bg-gray-800/50 border-gray-700 backdrop-blur-sm">
-                <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-                  <CardTitle className="text-sm font-medium text-gray-300">
-                    Total Staked
-                  </CardTitle>
-                  <Wallet className="h-4 w-4 text-blue-400" />
-                </CardHeader>
-                <CardContent>
-                  <div className="text-2xl font-bold text-white">
-                    ${(totalStaked + totalUSDCStaked).toFixed(2)}
-                  </div>
-                  <p className="text-xs text-gray-400">
-                    {safeStAptBalance.toFixed(4)} stAPT +{" "}
-                    {safeStUSDCBalance.toFixed(4)} stUSDC
-                  </p>
-                </CardContent>
-              </Card>
+            {overviewLoading ? (
+              <OverviewCardsSkeleton />
+            ) : (
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
+                <Card className="bg-gray-800/50 border-gray-700 backdrop-blur-sm">
+                  <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
+                    <CardTitle className="text-sm font-medium text-gray-300">
+                      Total Staked
+                    </CardTitle>
+                    <Wallet className="h-4 w-4 text-blue-400" />
+                  </CardHeader>
+                  <CardContent>
+                    <div className="text-2xl font-bold text-white">
+                      ${(totalStaked + totalUSDCStaked).toFixed(2)}
+                    </div>
+                    <p className="text-xs text-gray-400">
+                      {safeStAptBalance.toFixed(4)} stAPT +{" "}
+                      {safeStUSDCBalance.toFixed(4)} stUSDC
+                    </p>
+                  </CardContent>
+                </Card>
 
-              <Card className="bg-gray-800/50 border-gray-700 backdrop-blur-sm">
-                <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-                  <CardTitle className="text-sm font-medium text-gray-300">
-                    Daily Rewards
-                  </CardTitle>
-                  <TrendingUp className="h-4 w-4 text-green-400" />
-                </CardHeader>
-                <CardContent>
-                  <div className="text-2xl font-bold text-white">
-                    $
-                    {(
-                      estimatedDailyRewards + estimatedUSDCDailyRewards
-                    ).toFixed(2)}
-                  </div>
-                  <p className="text-xs text-green-400">
-                    +
-                    {(
-                      ((estimatedDailyRewards + estimatedUSDCDailyRewards) /
-                        (totalStaked + totalUSDCStaked)) *
-                      100
-                    ).toFixed(3)}
-                    % daily
-                  </p>
-                </CardContent>
-              </Card>
+                <Card className="bg-gray-800/50 border-gray-700 backdrop-blur-sm">
+                  <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
+                    <CardTitle className="text-sm font-medium text-gray-300">
+                      Daily Rewards
+                    </CardTitle>
+                    <TrendingUp className="h-4 w-4 text-green-400" />
+                  </CardHeader>
+                  <CardContent>
+                    <div className="text-2xl font-bold text-white">
+                      $
+                      {(
+                        estimatedDailyRewards + estimatedUSDCDailyRewards
+                      ).toFixed(2)}
+                    </div>
+                    <p className="text-xs text-green-400">
+                      +
+                      {(
+                        ((estimatedDailyRewards + estimatedUSDCDailyRewards) /
+                          (totalStaked + totalUSDCStaked)) *
+                        100
+                      ).toFixed(3)}
+                      % daily
+                    </p>
+                  </CardContent>
+                </Card>
 
-              <Card className="bg-gray-800/50 border-gray-700 backdrop-blur-sm">
-                <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-                  <CardTitle className="text-sm font-medium text-gray-300">
-                    Current APY
-                  </CardTitle>
-                  <BarChart3 className="h-4 w-4 text-purple-400" />
-                </CardHeader>
-                <CardContent>
-                  <div className="text-2xl font-bold text-white">
-                    {stakingApy.toFixed(2)}%
-                  </div>
-                  <p className="text-xs text-gray-400">
-                    Estimated annual yield
-                  </p>
-                </CardContent>
-              </Card>
+                <Card className="bg-gray-800/50 border-gray-700 backdrop-blur-sm">
+                  <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
+                    <CardTitle className="text-sm font-medium text-gray-300">
+                      Current APY
+                    </CardTitle>
+                    <BarChart3 className="h-4 w-4 text-purple-400" />
+                  </CardHeader>
+                  <CardContent>
+                    <div className="text-2xl font-bold text-white">
+                      {stakingApy.toFixed(2)}%
+                    </div>
+                    <p className="text-xs text-gray-400">
+                      Estimated annual yield
+                    </p>
+                  </CardContent>
+                </Card>
 
-              {/* <Card className="bg-gray-800/50 border-gray-700 backdrop-blur-sm">
+                {/* <Card className="bg-gray-800/50 border-gray-700 backdrop-blur-sm">
                 <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
                   <CardTitle className="text-sm font-medium text-gray-300">
                     Pending Requests
@@ -373,26 +467,36 @@ const StakingPositions = () => {
                   <p className="text-xs text-gray-400">Unstaking requests</p>
                 </CardContent>
               </Card> */}
-            </div>
+              </div>
+            )}
 
             {/* Active Positions */}
             <Card className="bg-gray-800/50 border-gray-700 backdrop-blur-sm mb-8">
               <CardHeader>
                 <CardTitle className="text-white flex items-center justify-between">
-                  Active Staking Positions
-                  <Badge
-                    variant="secondary"
-                    className="bg-gray-700 text-gray-300"
-                  >
-                    {stakingPositions.filter((p) => p.active).length} active
-                  </Badge>
+                  <div className="flex items-center space-x-2">
+                    <span>Active Staking Positions</span>
+                    {positionsLoading && (
+                      <Loader2 className="h-4 w-4 animate-spin text-gray-400" />
+                    )}
+                  </div>
+                  {!positionsLoading && (
+                    <Badge
+                      variant="secondary"
+                      className="bg-gray-700 text-gray-300"
+                    >
+                      {stakingPositions.filter((p) => p.active).length} active
+                    </Badge>
+                  )}
                 </CardTitle>
                 <CardDescription className="text-gray-400">
                   Your current liquid staking positions and earnings
                 </CardDescription>
               </CardHeader>
               <CardContent>
-                {stakingPositions.filter((p) => p.active).length === 0 ? (
+                {positionsLoading ? (
+                  <PositionsLoadingSkeleton />
+                ) : stakingPositions.filter((p) => p.active).length === 0 ? (
                   <div className="flex flex-col items-center justify-center py-16 text-gray-400">
                     <Wallet className="h-16 w-16 mb-4 opacity-50" />
                     <p className="text-xl font-medium mb-2">

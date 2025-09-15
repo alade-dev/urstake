@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { useCallback, useRef } from "react";
 import { useWallet } from "@aptos-labs/wallet-adapter-react";
 import { aptos } from "../config/aptos";
@@ -617,7 +618,7 @@ export const useUSDCStaking = () => {
 
         cache.lastFetchProtocolStats = now;
         resetFailureCount(); // Reset on successful call
-        console.log("Fresh USDC protocol stats fetched:", cache.protocolStats);
+        // console.log("Fresh USDC protocol stats fetched:", cache.protocolStats);
         return cache.protocolStats;
       } catch (error) {
         console.warn(
@@ -687,9 +688,9 @@ export const useUSDCStaking = () => {
 
       // Note: The Move contract doesn't have a view function to get request details
       // This would require adding a view function to the contract to get actual request data
-      console.log(
-        `User has ${userInfo.pendingRequests} pending USDC unstaking requests`
-      );
+      // console.log(
+      //   `User has ${userInfo.pendingRequests} pending USDC unstaking requests`
+      // );
 
       // Return empty array since we can't get actual request details without a contract view function
       return [];
@@ -698,6 +699,140 @@ export const useUSDCStaking = () => {
       return [];
     }
   };
+
+  // Get transaction history for USDC staking
+  const getUSDCTransactionHistory = useCallback(
+    async (userAddress?: string): Promise<any[]> => {
+      const address = userAddress || account?.address?.toString();
+      if (!address) {
+        return [];
+      }
+
+      try {
+        // Fetch account transactions from Aptos
+        const transactions = await aptos.getAccountTransactions({
+          accountAddress: address,
+          options: {
+            limit: 100,
+          },
+        });
+
+        // Filter for USDC stake-related transactions
+        const usdcStakeTransactions = transactions.filter((tx: any) => {
+          if (tx.type !== "user_transaction") return false;
+
+          const payload = tx.payload;
+          if (!payload || payload.type !== "entry_function_payload")
+            return false;
+
+          // Check if transaction is related to our USDC staking contract
+          return payload.function?.includes(USDC_STAKING_CONFIG.MODULE_ID);
+        });
+
+        // Parse transactions to extract amounts from events
+        const parsedTransactions = usdcStakeTransactions.map((tx: any) => {
+          const payload = tx.payload;
+          const functionName = payload?.function || "";
+          const args = payload?.arguments || [];
+
+          // Extract amount from function arguments (usually first argument)
+          let amount = "0";
+          let stTokensReceived = "0";
+          let usdcToReceive = "0";
+          let usdcReceived = "0";
+          let rewardsClaimed = "0";
+
+          if (args.length > 0) {
+            // Amount is typically in micro USDC, convert to USDC
+            const amountInMicroUsdc = parseInt(args[0]) || 0;
+            amount = microUsdcToUsdc(amountInMicroUsdc).toFixed(6);
+
+            // For staking, calculate stUSDC received (assuming 1:1 for simplicity)
+            if (
+              functionName.includes("stake_usdc") &&
+              !functionName.includes("unstake")
+            ) {
+              stTokensReceived = amount;
+            }
+
+            // For unstaking, the amount is in stUSDC, calculate USDC to receive
+            if (functionName.includes("request_unstake_usdc")) {
+              usdcToReceive = amount;
+            }
+
+            // For completing unstaking
+            if (functionName.includes("complete_unstaking_usdc")) {
+              usdcReceived = amount;
+            }
+
+            // For claiming rewards
+            if (functionName.includes("claim_rewards")) {
+              rewardsClaimed = amount;
+            }
+          }
+
+          // Try to parse events for more accurate amounts
+          if (tx.events && Array.isArray(tx.events)) {
+            tx.events.forEach((event: any) => {
+              if (event.type?.includes("USDCStakeEvent")) {
+                const eventData = event.data;
+                if (eventData.amount) {
+                  amount = microUsdcToUsdc(parseInt(eventData.amount)).toFixed(
+                    6
+                  );
+                }
+                if (eventData.st_usdc_minted) {
+                  stTokensReceived = microUsdcToUsdc(
+                    parseInt(eventData.st_usdc_minted)
+                  ).toFixed(6);
+                }
+              }
+              if (event.type?.includes("USDCUnstakeRequestEvent")) {
+                const eventData = event.data;
+                if (eventData.amount) {
+                  amount = microUsdcToUsdc(parseInt(eventData.amount)).toFixed(
+                    6
+                  );
+                  usdcToReceive = amount; // For unstaking, amount is what will be received
+                }
+              }
+              if (event.type?.includes("USDCUnstakeCompleteEvent")) {
+                const eventData = event.data;
+                if (eventData.amount) {
+                  usdcReceived = microUsdcToUsdc(
+                    parseInt(eventData.amount)
+                  ).toFixed(6);
+                }
+              }
+              if (event.type?.includes("USDCRewardsClaimedEvent")) {
+                const eventData = event.data;
+                if (eventData.amount) {
+                  rewardsClaimed = microUsdcToUsdc(
+                    parseInt(eventData.amount)
+                  ).toFixed(6);
+                }
+              }
+            });
+          }
+
+          return {
+            ...tx,
+            parsedAmount: amount,
+            stTokensReceived,
+            usdcToReceive,
+            usdcReceived,
+            rewardsClaimed,
+          };
+        });
+
+        return parsedTransactions;
+      } catch (error) {
+        console.error("Error fetching USDC transaction history:", error);
+        return [];
+      }
+    },
+    [account]
+  );
 
   // Helper to get transaction URL
   const getTxUrl = (txHash: string) => {
@@ -710,7 +845,7 @@ export const useUSDCStaking = () => {
 
     // Prevent rapid force refresh calls
     if (now - cache.lastForceRefresh < cache.FORCE_REFRESH_COOLDOWN) {
-      console.log("⏰ USDC force refresh on cooldown, using cached data");
+      // console.log("⏰ USDC force refresh on cooldown, using cached data");
       return {
         exchangeRate: cache.exchangeRate || 1.0,
         protocolStats: cache.protocolStats || {
@@ -723,9 +858,9 @@ export const useUSDCStaking = () => {
       };
     }
 
-    console.log(
-      "🔄 Force refreshing USDC data - clearing cache and fetching fresh..."
-    );
+    // console.log(
+    //   "🔄 Force refreshing USDC data - clearing cache and fetching fresh..."
+    // );
 
     cache.lastForceRefresh = now;
 
@@ -743,10 +878,10 @@ export const useUSDCStaking = () => {
         getUSDCExchangeRate(true),
         getUSDCProtocolStats(true),
       ]);
-      console.log("✅ USDC force refresh completed:", {
-        exchangeRate,
-        protocolStats,
-      });
+      // console.log("✅ USDC force refresh completed:", {
+      //   exchangeRate,
+      //   protocolStats,
+      // });
       return { exchangeRate, protocolStats };
     } catch (error) {
       console.error("❌ USDC force refresh failed:", error);
@@ -763,6 +898,7 @@ export const useUSDCStaking = () => {
     getUSDCExchangeRate,
     getUserUSDCStakeInfo,
     getUSDCProtocolStats,
+    getUSDCTransactionHistory,
     forceRefreshUSDCData,
     clearInvalidCache,
     getAvailableUSDCData,
