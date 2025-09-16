@@ -17,32 +17,40 @@ import { Link } from "react-router-dom";
 const Features = () => {
   const coreFeatures = [
     {
-      title: "Multi-Asset Liquid Staking",
+      title: "Liquid APT & USDC Staking",
       description:
-        "Stake APT and USDC while maintaining liquidity through tradeable staking tokens.",
+        "Stake your APT and USDC tokens while receiving stAPT and stUSDC - tradeable liquid staking tokens that represent your staked position and continue earning rewards.",
       icon: Lock,
-      gradient: "from-blue-500/20 to-purple-500/20",
+      gradient: "from-blue-500 via-purple-500 to-indigo-600",
+      bgGradient: "from-blue-500/10 via-purple-500/5 to-indigo-600/10",
+      iconColor: "text-blue-400",
     },
     {
-      title: "Automated Yield Optimization",
+      title: "Smart Yield Compounding",
       description:
-        "AI-powered strategies automatically compound rewards and optimize yield across protocols.",
+        "UrStake automatically compounds your staking rewards, maximizing your returns without manual intervention. Watch your yield grow exponentially over time.",
       icon: TrendingUp,
-      gradient: "from-green-500/20 to-emerald-500/20",
+      gradient: "from-emerald-500 via-green-500 to-teal-600",
+      bgGradient: "from-emerald-500/10 via-green-500/5 to-teal-600/10",
+      iconColor: "text-emerald-400",
     },
     {
-      title: "Instant Liquidity",
+      title: "Instant Exit Liquidity",
       description:
-        "Trade your staked assets instantly through DEX integration without unstaking delays.",
+        "No more waiting for unstaking periods. Trade your stAPT and stUSDC tokens instantly on DEXs or use our built-in swap feature for immediate liquidity access.",
       icon: Zap,
-      gradient: "from-yellow-500/20 to-orange-500/20",
+      gradient: "from-yellow-500 via-orange-500 to-red-500",
+      bgGradient: "from-yellow-500/10 via-orange-500/5 to-red-500/10",
+      iconColor: "text-yellow-400",
     },
     {
-      title: "Social Staking Pools",
+      title: "Community Governance",
       description:
-        "Join community-managed pools with shared strategies and governance participation.",
+        "Participate in UrStake governance decisions. Stake holders can vote on protocol upgrades, fee structures, and new feature implementations through our DAO.",
       icon: Users,
-      gradient: "from-pink-500/20 to-red-500/20",
+      gradient: "from-pink-500 via-rose-500 to-red-500",
+      bgGradient: "from-pink-500/10 via-rose-500/5 to-red-500/10",
+      iconColor: "text-pink-400",
     },
   ];
 
@@ -99,22 +107,34 @@ const Features = () => {
           {coreFeatures.map((feature, index) => (
             <Card
               key={feature.title}
-              className="bg-gradient-card border-border/50 shadow-card backdrop-blur-sm p-8 hover:shadow-glow/20 transition-all duration-300 group"
+              className="relative bg-gradient-to-br from-white/5 to-white/10 border border-white/10 shadow-2xl backdrop-blur-md p-8 hover:shadow-blue-500/20 transition-all duration-500 group overflow-hidden hover:scale-[1.02] hover:-translate-y-1"
             >
-              <div className="space-y-6">
+              {/* Animated Background Gradient */}
+              <div
+                className={`absolute inset-0 bg-gradient-to-br ${feature.bgGradient} opacity-0 group-hover:opacity-100 transition-opacity duration-500`}
+              ></div>
+
+              {/* Floating Orbs Animation */}
+              <div className="absolute -top-10 -right-10 w-20 h-20 bg-gradient-to-br from-blue-400/20 to-purple-600/20 rounded-full blur-xl group-hover:scale-150 transition-transform duration-700"></div>
+              <div className="absolute -bottom-10 -left-10 w-16 h-16 bg-gradient-to-br from-pink-400/20 to-orange-600/20 rounded-full blur-xl group-hover:scale-125 transition-transform duration-700 delay-100"></div>
+
+              <div className="relative z-10 space-y-6">
                 <div className="flex items-center space-x-4">
                   <div
-                    className={`w-14 h-14 rounded-xl bg-gradient-to-br ${feature.gradient} flex items-center justify-center group-hover:scale-110 transition-transform duration-300`}
+                    className={`w-16 h-16 rounded-2xl bg-gradient-to-br ${feature.gradient} flex items-center justify-center group-hover:scale-110 group-hover:rotate-6 transition-all duration-500 shadow-lg`}
                   >
-                    <feature.icon size={28} className="text-primary" />
+                    <feature.icon
+                      size={32}
+                      className={`${feature.iconColor} group-hover:scale-110 transition-transform duration-300`}
+                    />
                   </div>
                   <div>
-                    <h3 className="text-xl font-bold text-foreground">
+                    <h3 className="text-xl font-bold text-white group-hover:text-blue-100 transition-colors duration-300">
                       {feature.title}
                     </h3>
                   </div>
                 </div>
-                <p className="text-muted-foreground leading-relaxed text-lg">
+                <p className="text-gray-300 leading-relaxed text-lg group-hover:text-gray-200 transition-colors duration-300">
                   {feature.description}
                 </p>
               </div>

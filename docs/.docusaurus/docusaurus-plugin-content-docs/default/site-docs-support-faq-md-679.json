@@ -1,0 +1,27 @@
+{
+  "id": "support/faq",
+  "title": "Frequently Asked Questions",
+  "description": "Get answers to the most common questions about UrStake's liquid staking protocol.",
+  "source": "@site/docs/support/faq.md",
+  "sourceDirName": "support",
+  "slug": "/support/faq",
+  "permalink": "/support/faq",
+  "draft": false,
+  "unlisted": false,
+  "editUrl": "https://github.com/alade-dev/urstake/tree/main/docs/docs/support/faq.md",
+  "tags": [],
+  "version": "current",
+  "sidebarPosition": 1,
+  "frontMatter": {
+    "sidebar_position": 1
+  },
+  "sidebar": "tutorialSidebar",
+  "previous": {
+    "title": "Smart Contract Architecture",
+    "permalink": "/developer/smart-contracts"
+  },
+  "next": {
+    "title": "Troubleshooting Guide",
+    "permalink": "/support/troubleshooting"
+  }
+}

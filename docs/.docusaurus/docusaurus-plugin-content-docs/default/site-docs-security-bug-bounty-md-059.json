@@ -1,0 +1,18 @@
+{
+  "id": "security/bug-bounty",
+  "title": "Bug Bounty Program",
+  "description": "UrStake's comprehensive bug bounty program rewards security researchers for finding and responsibly disclosing vulnerabilities.",
+  "source": "@site/docs/security/bug-bounty.md",
+  "sourceDirName": "security",
+  "slug": "/security/bug-bounty",
+  "permalink": "/security/bug-bounty",
+  "draft": false,
+  "unlisted": false,
+  "editUrl": "https://github.com/alade-dev/urstake/tree/main/docs/docs/security/bug-bounty.md",
+  "tags": [],
+  "version": "current",
+  "sidebarPosition": 3,
+  "frontMatter": {
+    "sidebar_position": 3
+  }
+}

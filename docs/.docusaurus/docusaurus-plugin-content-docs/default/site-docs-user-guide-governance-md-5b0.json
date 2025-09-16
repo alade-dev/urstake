@@ -1,0 +1,27 @@
+{
+  "id": "user-guide/governance",
+  "title": "Governance",
+  "description": "Participate in UrStake's decentralized governance and help shape the future of liquid staking on Aptos.",
+  "source": "@site/docs/user-guide/governance.md",
+  "sourceDirName": "user-guide",
+  "slug": "/user-guide/governance",
+  "permalink": "/user-guide/governance",
+  "draft": false,
+  "unlisted": false,
+  "editUrl": "https://github.com/alade-dev/urstake/tree/main/docs/docs/user-guide/governance.md",
+  "tags": [],
+  "version": "current",
+  "sidebarPosition": 5,
+  "frontMatter": {
+    "sidebar_position": 5
+  },
+  "sidebar": "tutorialSidebar",
+  "previous": {
+    "title": "Liquid Tokens",
+    "permalink": "/user-guide/liquid-tokens"
+  },
+  "next": {
+    "title": "Smart Contract Architecture",
+    "permalink": "/developer/smart-contracts"
+  }
+}

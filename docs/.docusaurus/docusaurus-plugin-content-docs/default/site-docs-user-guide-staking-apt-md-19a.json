@@ -1,0 +1,27 @@
+{
+  "id": "user-guide/staking-apt",
+  "title": "APT Staking Guide",
+  "description": "Stake your APT tokens with UrStake to earn rewards while maintaining liquidity through stAPT tokens.",
+  "source": "@site/docs/user-guide/staking-apt.md",
+  "sourceDirName": "user-guide",
+  "slug": "/user-guide/staking-apt",
+  "permalink": "/user-guide/staking-apt",
+  "draft": false,
+  "unlisted": false,
+  "editUrl": "https://github.com/alade-dev/urstake/tree/main/docs/docs/user-guide/staking-apt.md",
+  "tags": [],
+  "version": "current",
+  "sidebarPosition": 1,
+  "frontMatter": {
+    "sidebar_position": 1
+  },
+  "sidebar": "tutorialSidebar",
+  "previous": {
+    "title": "Your First Stake",
+    "permalink": "/getting-started/first-stake"
+  },
+  "next": {
+    "title": "USDC Staking Guide",
+    "permalink": "/user-guide/staking-usdc"
+  }
+}

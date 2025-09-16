@@ -1,0 +1,27 @@
+{
+  "id": "getting-started/overview",
+  "title": "Platform Overview",
+  "description": "UrStake revolutionizes staking on the Aptos blockchain by providing liquid staking solutions that eliminate the traditional trade-off between earning rewards and maintaining liquidity.",
+  "source": "@site/docs/getting-started/overview.md",
+  "sourceDirName": "getting-started",
+  "slug": "/getting-started/overview",
+  "permalink": "/getting-started/overview",
+  "draft": false,
+  "unlisted": false,
+  "editUrl": "https://github.com/alade-dev/urstake/tree/main/docs/docs/getting-started/overview.md",
+  "tags": [],
+  "version": "current",
+  "sidebarPosition": 1,
+  "frontMatter": {
+    "sidebar_position": 1
+  },
+  "sidebar": "tutorialSidebar",
+  "previous": {
+    "title": "Welcome to UrStake",
+    "permalink": "/"
+  },
+  "next": {
+    "title": "Wallet Setup",
+    "permalink": "/getting-started/wallet-setup"
+  }
+}

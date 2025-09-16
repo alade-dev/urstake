@@ -1,0 +1,27 @@
+{
+  "id": "user-guide/liquid-tokens",
+  "title": "Liquid Tokens",
+  "description": "Understand how stAPT and stUSDC liquid staking tokens work and how to use them across the DeFi ecosystem.",
+  "source": "@site/docs/user-guide/liquid-tokens.md",
+  "sourceDirName": "user-guide",
+  "slug": "/user-guide/liquid-tokens",
+  "permalink": "/user-guide/liquid-tokens",
+  "draft": false,
+  "unlisted": false,
+  "editUrl": "https://github.com/alade-dev/urstake/tree/main/docs/docs/user-guide/liquid-tokens.md",
+  "tags": [],
+  "version": "current",
+  "sidebarPosition": 3,
+  "frontMatter": {
+    "sidebar_position": 3
+  },
+  "sidebar": "tutorialSidebar",
+  "previous": {
+    "title": "Unstaking Guide",
+    "permalink": "/user-guide/unstaking"
+  },
+  "next": {
+    "title": "Governance",
+    "permalink": "/user-guide/governance"
+  }
+}

@@ -1,0 +1,18 @@
+{
+  "id": "security/best-practices",
+  "title": "Security Best Practices",
+  "description": "Essential security guidelines for users, developers, and integrators working with UrStake's liquid staking protocol.",
+  "source": "@site/docs/security/best-practices.md",
+  "sourceDirName": "security",
+  "slug": "/security/best-practices",
+  "permalink": "/security/best-practices",
+  "draft": false,
+  "unlisted": false,
+  "editUrl": "https://github.com/alade-dev/urstake/tree/main/docs/docs/security/best-practices.md",
+  "tags": [],
+  "version": "current",
+  "sidebarPosition": 2,
+  "frontMatter": {
+    "sidebar_position": 2
+  }
+}

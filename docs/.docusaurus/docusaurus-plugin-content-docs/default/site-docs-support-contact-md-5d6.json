@@ -1,0 +1,23 @@
+{
+  "id": "support/contact",
+  "title": "Contact & Support",
+  "description": "Get help from the UrStake team and community through our various support channels.",
+  "source": "@site/docs/support/contact.md",
+  "sourceDirName": "support",
+  "slug": "/support/contact",
+  "permalink": "/support/contact",
+  "draft": false,
+  "unlisted": false,
+  "editUrl": "https://github.com/alade-dev/urstake/tree/main/docs/docs/support/contact.md",
+  "tags": [],
+  "version": "current",
+  "sidebarPosition": 3,
+  "frontMatter": {
+    "sidebar_position": 3
+  },
+  "sidebar": "tutorialSidebar",
+  "previous": {
+    "title": "Troubleshooting Guide",
+    "permalink": "/support/troubleshooting"
+  }
+}

@@ -1,0 +1,18 @@
+{
+  "id": "developer/integration",
+  "title": "Integration Guide",
+  "description": "Learn how to integrate UrStake's liquid staking protocol into your DeFi application, wallet, or platform.",
+  "source": "@site/docs/developer/integration.md",
+  "sourceDirName": "developer",
+  "slug": "/developer/integration",
+  "permalink": "/developer/integration",
+  "draft": false,
+  "unlisted": false,
+  "editUrl": "https://github.com/alade-dev/urstake/tree/main/docs/docs/developer/integration.md",
+  "tags": [],
+  "version": "current",
+  "sidebarPosition": 3,
+  "frontMatter": {
+    "sidebar_position": 3
+  }
+}

@@ -1,0 +1,27 @@
+{
+  "id": "user-guide/staking-usdc",
+  "title": "USDC Staking Guide",
+  "description": "Stake USDC with UrStake to earn stable yields while maintaining the full utility of your stablecoin holdings.",
+  "source": "@site/docs/user-guide/staking-usdc.md",
+  "sourceDirName": "user-guide",
+  "slug": "/user-guide/staking-usdc",
+  "permalink": "/user-guide/staking-usdc",
+  "draft": false,
+  "unlisted": false,
+  "editUrl": "https://github.com/alade-dev/urstake/tree/main/docs/docs/user-guide/staking-usdc.md",
+  "tags": [],
+  "version": "current",
+  "sidebarPosition": 2,
+  "frontMatter": {
+    "sidebar_position": 2
+  },
+  "sidebar": "tutorialSidebar",
+  "previous": {
+    "title": "APT Staking Guide",
+    "permalink": "/user-guide/staking-apt"
+  },
+  "next": {
+    "title": "Unstaking Guide",
+    "permalink": "/user-guide/unstaking"
+  }
+}

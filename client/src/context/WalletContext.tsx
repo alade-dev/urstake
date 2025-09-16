@@ -1,3 +1,4 @@
+/* eslint-disable no-useless-catch */
 import React, { createContext, useState, useEffect, ReactNode } from "react";
 import { AptosWalletAdapterProvider } from "@aptos-labs/wallet-adapter-react";
 import { useWallet as useAptosWallet } from "@aptos-labs/wallet-adapter-react";

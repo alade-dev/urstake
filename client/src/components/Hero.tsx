@@ -104,24 +104,52 @@ const Hero = () => {
             </span>
           </div>
 
-          {/* CTA Buttons */}
-          <div className="flex flex-col sm:flex-row gap-4 pt-8">
-            <Button
-              variant="hero"
-              size="lg"
-              className="hidden md:inline-flex"
-              onClick={handleLaunchApp}
-            >
-              {connected ? "Go to Dashboard" : "Launch App"}
-            </Button>
-
-            <Button
-              variant="default"
-              size="lg"
-              className="bg-muted text-foreground hover:bg-muted/80 px-8 py-3 rounded-lg font-medium"
-            >
-              Join Community
-            </Button>
+          {/* CTA Section - Boxed Design with Shadow */}
+          <div className="pt-8">
+            <div className="bg-white/10 backdrop-blur-sm border border-white/20 rounded-full p-6 shadow-2xl">
+              <div className="flex items-center justify-between gap-5 ">
+                {/* Join Community Button */}
+                <div className="group relative">
+                  <a
+                    href="https://x.com/urstake_defi"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    <Button
+                      variant="link"
+                      size="lg"
+                      className="px-6 py-8 text-lg font-medium bg-transparent border-2 border-gray-300/40 text-gray-200 hover:bg-white/10 hover:border-white/60 rounded-full transition-all duration-300"
+                    >
+                      View Docs
+                    </Button>
+                  </a>
+                </div>
+                {/* Stake Button */}
+                <div className="group relative">
+                  <Button
+                    variant="hero"
+                    size="lg"
+                    className="bg-gray-800 hover:bg-gray-900 text-white px-8 py-8 rounded-full font-medium text-lg transition-all duration-300 flex items-center gap-2"
+                    onClick={handleLaunchApp}
+                  >
+                    <span>Stake now</span>
+                    <svg
+                      className="w-4 h-4 transition-transform duration-300 group-hover:translate-x-1"
+                      fill="none"
+                      stroke="currentColor"
+                      viewBox="0 0 24 24"
+                    >
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        strokeWidth={2}
+                        d="M13 7l5 5m0 0l-5 5m5-5H6"
+                      />
+                    </svg>
+                  </Button>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </div>

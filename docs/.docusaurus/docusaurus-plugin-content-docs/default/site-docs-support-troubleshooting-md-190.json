@@ -1,0 +1,27 @@
+{
+  "id": "support/troubleshooting",
+  "title": "Troubleshooting Guide",
+  "description": "Step-by-step solutions for common issues when using UrStake's liquid staking protocol.",
+  "source": "@site/docs/support/troubleshooting.md",
+  "sourceDirName": "support",
+  "slug": "/support/troubleshooting",
+  "permalink": "/support/troubleshooting",
+  "draft": false,
+  "unlisted": false,
+  "editUrl": "https://github.com/alade-dev/urstake/tree/main/docs/docs/support/troubleshooting.md",
+  "tags": [],
+  "version": "current",
+  "sidebarPosition": 2,
+  "frontMatter": {
+    "sidebar_position": 2
+  },
+  "sidebar": "tutorialSidebar",
+  "previous": {
+    "title": "Frequently Asked Questions",
+    "permalink": "/support/faq"
+  },
+  "next": {
+    "title": "Contact & Support",
+    "permalink": "/support/contact"
+  }
+}

@@ -1,0 +1,18 @@
+{
+  "id": "developer/sdk",
+  "title": "SDK Documentation",
+  "description": "Comprehensive documentation for UrStake's software development kits (SDKs) across multiple programming languages.",
+  "source": "@site/docs/developer/sdk.md",
+  "sourceDirName": "developer",
+  "slug": "/developer/sdk",
+  "permalink": "/developer/sdk",
+  "draft": false,
+  "unlisted": false,
+  "editUrl": "https://github.com/alade-dev/urstake/tree/main/docs/docs/developer/sdk.md",
+  "tags": [],
+  "version": "current",
+  "sidebarPosition": 4,
+  "frontMatter": {
+    "sidebar_position": 4
+  }
+}

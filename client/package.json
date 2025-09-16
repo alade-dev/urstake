@@ -1,7 +1,16 @@
 {
-  "$schema": "https://json.schemastore.org/package.json",
   "name": "urstake",
-  "version": "0.0.0",
+  "version": "1.0.0",
+  "description": "UrStake Documentation - The Ultimate Liquid Staking Platform on Aptos",
+  "keywords": [
+    "aptos",
+    "staking",
+    "defi",
+    "liquid-staking",
+    "blockchain"
+  ],
+  "author": "UrStake Team",
+  "license": "MIT",
   "type": "module",
   "scripts": {
     "dev": "vite",
@@ -81,5 +90,20 @@
     "typescript": "^5.8.3",
     "typescript-eslint": "^8.38.0",
     "vite": "^5.4.19"
+  },
+  "browserslist": {
+    "production": [
+      ">0.5%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 3 chrome version",
+      "last 3 firefox version",
+      "last 5 safari version"
+    ]
+  },
+  "engines": {
+    "node": ">=18.0"
   }
 }

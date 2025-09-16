@@ -1,0 +1,24 @@
+{
+  "id": "intro",
+  "title": "Welcome to UrStake",
+  "description": "UrStake is the ultimate liquid staking platform on the Aptos blockchain, enabling users to stake their APT and USDC tokens while maintaining liquidity through tradeable staking derivatives.",
+  "source": "@site/docs/intro.md",
+  "sourceDirName": ".",
+  "slug": "/",
+  "permalink": "/",
+  "draft": false,
+  "unlisted": false,
+  "editUrl": "https://github.com/alade-dev/urstake/tree/main/docs/docs/intro.md",
+  "tags": [],
+  "version": "current",
+  "sidebarPosition": 1,
+  "frontMatter": {
+    "sidebar_position": 1,
+    "slug": "/"
+  },
+  "sidebar": "tutorialSidebar",
+  "next": {
+    "title": "Platform Overview",
+    "permalink": "/getting-started/overview"
+  }
+}
