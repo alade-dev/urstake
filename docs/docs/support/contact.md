@@ -68,14 +68,14 @@ Get help from the UrStake team and community through our various support channel
 
 ### 📚 Self-Service Resources
 
-**Documentation**: [docs.urstake.com](https://docs.urstake.com)
+**Documentation**: [urstake-docs.vercel.app](https://urstake-docs.vercel.app)
 
 - Comprehensive guides
 - API documentation
 - Integration tutorials
 - Best practices
 
-**FAQ**: [docs.urstake.com/support/faq](/support/faq)
+**FAQ**: [urstake-docs.vercel.app/support/faq](/support/faq)
 
 - Common questions and answers
 - Step-by-step guides

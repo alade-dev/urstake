@@ -4,163 +4,148 @@
  * Modify the docusaurus.config.js file at your site's root instead.
  */
 export default {
-  "title": "UrStake Documentation",
-  "tagline": "The Ultimate Liquid Staking Platform on Aptos",
-  "favicon": "img/favicon.ico",
-  "url": "https://docs.urstake.com",
-  "baseUrl": "/",
-  "organizationName": "alade-dev",
-  "projectName": "urstake",
-  "onBrokenLinks": "throw",
-  "onBrokenMarkdownLinks": "warn",
-  "i18n": {
-    "defaultLocale": "en",
-    "locales": [
-      "en"
-    ],
-    "path": "i18n",
-    "localeConfigs": {}
+  title: "UrStake Documentation",
+  tagline: "The Ultimate Liquid Staking Platform on Aptos",
+  favicon: "img/favicon.ico",
+  url: "https://urstake-docs.vercel.app",
+  baseUrl: "/",
+  organizationName: "alade-dev",
+  projectName: "urstake",
+  onBrokenLinks: "throw",
+  onBrokenMarkdownLinks: "warn",
+  i18n: {
+    defaultLocale: "en",
+    locales: ["en"],
+    path: "i18n",
+    localeConfigs: {},
   },
-  "presets": [
+  presets: [
     [
       "classic",
       {
-        "docs": {
-          "sidebarPath": "./sidebars.ts",
-          "routeBasePath": "/",
-          "editUrl": "https://github.com/alade-dev/urstake/tree/main/docs/"
+        docs: {
+          sidebarPath: "./sidebars.ts",
+          routeBasePath: "/",
+          editUrl: "https://github.com/alade-dev/urstake/tree/main/docs/",
         },
-        "blog": false,
-        "theme": {
-          "customCss": "./src/css/custom.css"
-        }
-      }
-    ]
-  ],
-  "themeConfig": {
-    "image": "img/urstake-social-card.jpg",
-    "navbar": {
-      "title": "UrStake",
-      "logo": {
-        "alt": "UrStake Logo",
-        "src": "img/urstake.png"
+        blog: false,
+        theme: {
+          customCss: "./src/css/custom.css",
+        },
       },
-      "items": [
+    ],
+  ],
+  themeConfig: {
+    image: "img/urstake-social-card.jpg",
+    navbar: {
+      title: "UrStake",
+      logo: {
+        alt: "UrStake Logo",
+        src: "img/urstake.png",
+      },
+      items: [
         {
-          "type": "docSidebar",
-          "sidebarId": "tutorialSidebar",
-          "position": "left",
-          "label": "Docs"
+          type: "docSidebar",
+          sidebarId: "tutorialSidebar",
+          position: "left",
+          label: "Docs",
         },
         {
-          "href": "https://urstake.vercel.app",
-          "label": "Launch App",
-          "position": "right"
+          href: "https://urstake.vercel.app",
+          label: "Launch App",
+          position: "right",
         },
         {
-          "href": "https://github.com/alade-dev/urstake",
-          "label": "GitHub",
-          "position": "right"
-        }
+          href: "https://github.com/alade-dev/urstake",
+          label: "GitHub",
+          position: "right",
+        },
       ],
-      "hideOnScroll": false
+      hideOnScroll: false,
     },
-    "footer": {
-      "style": "dark",
-      "links": [
+    footer: {
+      style: "dark",
+      links: [
         {
-          "title": "Docs",
-          "items": [
+          title: "Docs",
+          items: [
             {
-              "label": "Getting Started",
-              "to": "/getting-started/overview"
+              label: "Getting Started",
+              to: "/getting-started/overview",
             },
             {
-              "label": "Smart Contracts",
-              "to": "/developer/smart-contracts"
-            }
-          ]
+              label: "Smart Contracts",
+              to: "/developer/smart-contracts",
+            },
+          ],
         },
         {
-          "title": "Community",
-          "items": [
+          title: "Community",
+          items: [
             {
-              "label": "Twitter",
-              "href": "https://twitter.com/urstake_defi"
+              label: "Twitter",
+              href: "https://twitter.com/urstake_defi",
             },
             {
-              "label": "Discord",
-              "href": "https://discord.gg/urstake"
+              label: "Discord",
+              href: "https://discord.gg/urstake",
             },
             {
-              "label": "Telegram",
-              "href": "https://t.me/urstake"
-            }
-          ]
+              label: "Telegram",
+              href: "https://t.me/urstake",
+            },
+          ],
         },
         {
-          "title": "More",
-          "items": [
+          title: "More",
+          items: [
             {
-              "label": "GitHub",
-              "href": "https://github.com/alade-dev/urstake"
+              label: "GitHub",
+              href: "https://github.com/alade-dev/urstake",
             },
             {
-              "label": "Launch App",
-              "href": "https://urstake.vercel.app"
-            }
-          ]
-        }
+              label: "Launch App",
+              href: "https://urstake.vercel.app",
+            },
+          ],
+        },
       ],
-      "copyright": "Copyright © 2025 UrStake. Built with Docusaurus."
+      copyright: "Copyright © 2025 UrStake. Built with Docusaurus.",
     },
-    "prism": {
-      "theme": {
-        "plain": {
-          "color": "#393A34",
-          "backgroundColor": "#f6f8fa"
+    prism: {
+      theme: {
+        plain: {
+          color: "#393A34",
+          backgroundColor: "#f6f8fa",
         },
-        "styles": [
+        styles: [
           {
-            "types": [
-              "comment",
-              "prolog",
-              "doctype",
-              "cdata"
-            ],
-            "style": {
-              "color": "#999988",
-              "fontStyle": "italic"
-            }
+            types: ["comment", "prolog", "doctype", "cdata"],
+            style: {
+              color: "#999988",
+              fontStyle: "italic",
+            },
           },
           {
-            "types": [
-              "namespace"
-            ],
-            "style": {
-              "opacity": 0.7
-            }
+            types: ["namespace"],
+            style: {
+              opacity: 0.7,
+            },
           },
           {
-            "types": [
-              "string",
-              "attr-value"
-            ],
-            "style": {
-              "color": "#e3116c"
-            }
+            types: ["string", "attr-value"],
+            style: {
+              color: "#e3116c",
+            },
           },
           {
-            "types": [
-              "punctuation",
-              "operator"
-            ],
-            "style": {
-              "color": "#393A34"
-            }
+            types: ["punctuation", "operator"],
+            style: {
+              color: "#393A34",
+            },
           },
           {
-            "types": [
+            types: [
               "entity",
               "url",
               "symbol",
@@ -170,229 +155,180 @@ export default {
               "constant",
               "property",
               "regex",
-              "inserted"
-            ],
-            "style": {
-              "color": "#36acaa"
-            }
-          },
-          {
-            "types": [
-              "atrule",
-              "keyword",
-              "attr-name",
-              "selector"
-            ],
-            "style": {
-              "color": "#00a4db"
-            }
-          },
-          {
-            "types": [
-              "function",
-              "deleted",
-              "tag"
-            ],
-            "style": {
-              "color": "#d73a49"
-            }
-          },
-          {
-            "types": [
-              "function-variable"
-            ],
-            "style": {
-              "color": "#6f42c1"
-            }
-          },
-          {
-            "types": [
-              "tag",
-              "selector",
-              "keyword"
-            ],
-            "style": {
-              "color": "#00009f"
-            }
-          }
-        ]
-      },
-      "darkTheme": {
-        "plain": {
-          "color": "#F8F8F2",
-          "backgroundColor": "#282A36"
-        },
-        "styles": [
-          {
-            "types": [
-              "prolog",
-              "constant",
-              "builtin"
-            ],
-            "style": {
-              "color": "rgb(189, 147, 249)"
-            }
-          },
-          {
-            "types": [
               "inserted",
-              "function"
             ],
-            "style": {
-              "color": "rgb(80, 250, 123)"
-            }
+            style: {
+              color: "#36acaa",
+            },
           },
           {
-            "types": [
-              "deleted"
-            ],
-            "style": {
-              "color": "rgb(255, 85, 85)"
-            }
+            types: ["atrule", "keyword", "attr-name", "selector"],
+            style: {
+              color: "#00a4db",
+            },
           },
           {
-            "types": [
-              "changed"
-            ],
-            "style": {
-              "color": "rgb(255, 184, 108)"
-            }
+            types: ["function", "deleted", "tag"],
+            style: {
+              color: "#d73a49",
+            },
           },
           {
-            "types": [
-              "punctuation",
-              "symbol"
-            ],
-            "style": {
-              "color": "rgb(248, 248, 242)"
-            }
+            types: ["function-variable"],
+            style: {
+              color: "#6f42c1",
+            },
           },
           {
-            "types": [
-              "string",
-              "char",
-              "tag",
-              "selector"
-            ],
-            "style": {
-              "color": "rgb(255, 121, 198)"
-            }
+            types: ["tag", "selector", "keyword"],
+            style: {
+              color: "#00009f",
+            },
           },
-          {
-            "types": [
-              "keyword",
-              "variable"
-            ],
-            "style": {
-              "color": "rgb(189, 147, 249)",
-              "fontStyle": "italic"
-            }
-          },
-          {
-            "types": [
-              "comment"
-            ],
-            "style": {
-              "color": "rgb(98, 114, 164)"
-            }
-          },
-          {
-            "types": [
-              "attr-name"
-            ],
-            "style": {
-              "color": "rgb(241, 250, 140)"
-            }
-          }
-        ]
+        ],
       },
-      "additionalLanguages": [
-        "json",
-        "javascript",
-        "typescript",
-        "bash",
-        "rust"
-      ],
-      "magicComments": [
+      darkTheme: {
+        plain: {
+          color: "#F8F8F2",
+          backgroundColor: "#282A36",
+        },
+        styles: [
+          {
+            types: ["prolog", "constant", "builtin"],
+            style: {
+              color: "rgb(189, 147, 249)",
+            },
+          },
+          {
+            types: ["inserted", "function"],
+            style: {
+              color: "rgb(80, 250, 123)",
+            },
+          },
+          {
+            types: ["deleted"],
+            style: {
+              color: "rgb(255, 85, 85)",
+            },
+          },
+          {
+            types: ["changed"],
+            style: {
+              color: "rgb(255, 184, 108)",
+            },
+          },
+          {
+            types: ["punctuation", "symbol"],
+            style: {
+              color: "rgb(248, 248, 242)",
+            },
+          },
+          {
+            types: ["string", "char", "tag", "selector"],
+            style: {
+              color: "rgb(255, 121, 198)",
+            },
+          },
+          {
+            types: ["keyword", "variable"],
+            style: {
+              color: "rgb(189, 147, 249)",
+              fontStyle: "italic",
+            },
+          },
+          {
+            types: ["comment"],
+            style: {
+              color: "rgb(98, 114, 164)",
+            },
+          },
+          {
+            types: ["attr-name"],
+            style: {
+              color: "rgb(241, 250, 140)",
+            },
+          },
+        ],
+      },
+      additionalLanguages: ["json", "javascript", "typescript", "bash", "rust"],
+      magicComments: [
         {
-          "className": "theme-code-block-highlighted-line",
-          "line": "highlight-next-line",
-          "block": {
-            "start": "highlight-start",
-            "end": "highlight-end"
-          }
-        }
-      ]
+          className: "theme-code-block-highlighted-line",
+          line: "highlight-next-line",
+          block: {
+            start: "highlight-start",
+            end: "highlight-end",
+          },
+        },
+      ],
     },
-    "colorMode": {
-      "defaultMode": "dark",
-      "disableSwitch": false,
-      "respectPrefersColorScheme": false
+    colorMode: {
+      defaultMode: "dark",
+      disableSwitch: false,
+      respectPrefersColorScheme: false,
     },
-    "docs": {
-      "versionPersistence": "localStorage",
-      "sidebar": {
-        "hideable": false,
-        "autoCollapseCategories": false
-      }
+    docs: {
+      versionPersistence: "localStorage",
+      sidebar: {
+        hideable: false,
+        autoCollapseCategories: false,
+      },
     },
-    "blog": {
-      "sidebar": {
-        "groupByYear": true
-      }
+    blog: {
+      sidebar: {
+        groupByYear: true,
+      },
     },
-    "metadata": [],
-    "tableOfContents": {
-      "minHeadingLevel": 2,
-      "maxHeadingLevel": 3
-    }
+    metadata: [],
+    tableOfContents: {
+      minHeadingLevel: 2,
+      maxHeadingLevel: 3,
+    },
   },
-  "baseUrlIssueBanner": true,
-  "future": {
-    "v4": {
-      "removeLegacyPostBuildHeadAttribute": false,
-      "useCssCascadeLayers": false
+  baseUrlIssueBanner: true,
+  future: {
+    v4: {
+      removeLegacyPostBuildHeadAttribute: false,
+      useCssCascadeLayers: false,
     },
-    "experimental_faster": {
-      "swcJsLoader": false,
-      "swcJsMinimizer": false,
-      "swcHtmlMinimizer": false,
-      "lightningCssMinimizer": false,
-      "mdxCrossCompilerCache": false,
-      "rspackBundler": false,
-      "rspackPersistentCache": false,
-      "ssgWorkerThreads": false
+    experimental_faster: {
+      swcJsLoader: false,
+      swcJsMinimizer: false,
+      swcHtmlMinimizer: false,
+      lightningCssMinimizer: false,
+      mdxCrossCompilerCache: false,
+      rspackBundler: false,
+      rspackPersistentCache: false,
+      ssgWorkerThreads: false,
     },
-    "experimental_storage": {
-      "type": "localStorage",
-      "namespace": false
+    experimental_storage: {
+      type: "localStorage",
+      namespace: false,
     },
-    "experimental_router": "browser"
+    experimental_router: "browser",
   },
-  "onBrokenAnchors": "warn",
-  "onDuplicateRoutes": "warn",
-  "staticDirectories": [
-    "static"
-  ],
-  "customFields": {},
-  "plugins": [],
-  "themes": [],
-  "scripts": [],
-  "headTags": [],
-  "stylesheets": [],
-  "clientModules": [],
-  "titleDelimiter": "|",
-  "noIndex": false,
-  "markdown": {
-    "format": "mdx",
-    "mermaid": false,
-    "mdx1Compat": {
-      "comments": true,
-      "admonitions": true,
-      "headingIds": true
+  onBrokenAnchors: "warn",
+  onDuplicateRoutes: "warn",
+  staticDirectories: ["static"],
+  customFields: {},
+  plugins: [],
+  themes: [],
+  scripts: [],
+  headTags: [],
+  stylesheets: [],
+  clientModules: [],
+  titleDelimiter: "|",
+  noIndex: false,
+  markdown: {
+    format: "mdx",
+    mermaid: false,
+    mdx1Compat: {
+      comments: true,
+      admonitions: true,
+      headingIds: true,
     },
-    "anchors": {
-      "maintainCase": false
-    }
-  }
+    anchors: {
+      maintainCase: false,
+    },
+  },
 };

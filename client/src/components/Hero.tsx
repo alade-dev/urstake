@@ -111,7 +111,7 @@ const Hero = () => {
                 {/* Join Community Button */}
                 <div className="group relative">
                   <a
-                    href="https://x.com/urstake_defi"
+                    href="https://urstake-docs.vercel.app/"
                     target="_blank"
                     rel="noopener noreferrer"
                   >

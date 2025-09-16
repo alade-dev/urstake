@@ -63,19 +63,23 @@ const Index = () => {
                   Testnet Faucet
                 </Link>
                 <a
-                  href="#"
+                  href="https://urstake-docs.vercel.app/"
+                  target="_blank"
+                  rel="noopener noreferrer"
                   className="block text-gray-400 hover:text-white transition-colors"
                 >
                   Documentation
                 </a>
                 <a
-                  href="#"
+                  href="https://urstake-docs.vercel.app/"
+                  target="_blank"
+                  rel="noopener noreferrer"
                   className="block text-gray-400 hover:text-white transition-colors"
                 >
                   API Reference
                 </a>
                 <a
-                  href="https://github.com/urstake"
+                  href="https://github.com/alade-dev/urstake"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="block text-gray-400 hover:text-white transition-colors"

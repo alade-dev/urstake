@@ -291,7 +291,7 @@ Check our [Developer Documentation](/developer/smart-contracts) for detailed int
 
 - 💬 **Discord**: [discord.gg/urstake](https://discord.gg/urstake) - Real-time community support
 - 📧 **Email**: [support@urstake.com](mailto:support@urstake.com) - Direct support team
-- 📚 **Documentation**: [docs.urstake.com](https://docs.urstake.com) - Comprehensive guides
+- 📚 **Documentation**: [urstake-docs.vercel.app](https://urstake-docs.vercel.app) - Comprehensive guides
 - 🐦 **Twitter**: [@UrStake](https://twitter.com/UrStake) - Updates and announcements
 
 ### What information should I include when asking for help?
