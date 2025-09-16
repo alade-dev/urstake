@@ -37,18 +37,8 @@ const sidebars: SidebarsConfig = {
     {
       type: "category",
       label: "Developer Guide",
-      items: [
-        "developer/smart-contracts",
-        // "developer/api-reference",
-        // "developer/integration",
-        // "developer/sdk",
-      ],
+      items: ["developer/smart-contracts"],
     },
-    // {
-    //   type: "category",
-    //   label: "Security",
-    //   items: ["security/best-practices", "security/bug-bounty"],
-    // },
     {
       type: "category",
       label: "FAQ & Support",

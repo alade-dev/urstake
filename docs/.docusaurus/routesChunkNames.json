@@ -1,130 +1,67 @@
 {
-  "/__docusaurus/debug-5ff": {
-    "__comp": "__comp---theme-debug-config-23-a-2ff",
+  "/-b07": {
+    "__comp": "5e95c892",
     "__context": {
-      "plugin": "plugin---docusaurus-debugb-38-ad3"
+      "plugin": "aba21aa0"
     }
   },
-  "/__docusaurus/debug/config-5ba": {
-    "__comp": "__comp---theme-debug-config-23-a-2ff",
-    "__context": {
-      "plugin": "plugin---docusaurus-debugb-38-ad3"
-    }
+  "/-ab8": {
+    "__comp": "a7bd4aaa",
+    "__props": "22dd74f7"
   },
-  "/__docusaurus/debug/content-a2b": {
-    "__comp": "__comp---theme-debug-contentba-8-ce7",
-    "__context": {
-      "plugin": "plugin---docusaurus-debugb-38-ad3"
-    },
-    "__props": "__props---docusaurus-debug-content-3-c-0-be2"
-  },
-  "/__docusaurus/debug/globalData-c3c": {
-    "__comp": "__comp---theme-debug-global-dataede-0fa",
-    "__context": {
-      "plugin": "plugin---docusaurus-debugb-38-ad3"
-    }
-  },
-  "/__docusaurus/debug/metadata-156": {
-    "__comp": "__comp---theme-debug-site-metadata-68-e-3d4",
-    "__context": {
-      "plugin": "plugin---docusaurus-debugb-38-ad3"
-    }
-  },
-  "/__docusaurus/debug/registry-88c": {
-    "__comp": "__comp---theme-debug-registry-679-501",
-    "__context": {
-      "plugin": "plugin---docusaurus-debugb-38-ad3"
-    }
-  },
-  "/__docusaurus/debug/routes-000": {
-    "__comp": "__comp---theme-debug-routes-946-699",
-    "__context": {
-      "plugin": "plugin---docusaurus-debugb-38-ad3"
-    }
-  },
-  "/-ac5": {
-    "__comp": "__comp---theme-docs-root-5-e-9-0b6",
-    "__context": {
-      "plugin": "plugin---aba-d70"
-    }
-  },
-  "/-b79": {
-    "__comp": "__comp---theme-doc-version-roota-7-b-5de",
-    "__props": "__props---22-d-307"
-  },
-  "/-c16": {
-    "__comp": "__comp---theme-doc-roota-94-67a"
-  },
-  "/developer/api-reference-be1": {
-    "__comp": "__comp---theme-doc-item-178-a40",
-    "content": "content---developer-api-reference-469-92e"
-  },
-  "/developer/integration-a14": {
-    "__comp": "__comp---theme-doc-item-178-a40",
-    "content": "content---developer-integration-335-200"
-  },
-  "/developer/sdk-bd1": {
-    "__comp": "__comp---theme-doc-item-178-a40",
-    "content": "content---developer-sdkf-55-61f"
+  "/-3cf": {
+    "__comp": "a94703ab"
   },
   "/developer/smart-contracts-e9b": {
-    "__comp": "__comp---theme-doc-item-178-a40",
-    "content": "content---developer-smart-contractsa-2-b-e03"
+    "__comp": "17896441",
+    "content": "a2b08224"
   },
   "/getting-started/first-stake-8a4": {
-    "__comp": "__comp---theme-doc-item-178-a40",
-    "content": "content---getting-started-first-stake-237-e65"
+    "__comp": "17896441",
+    "content": "23740898"
   },
   "/getting-started/overview-204": {
-    "__comp": "__comp---theme-doc-item-178-a40",
-    "content": "content---getting-started-overview-7-a-9-b77"
+    "__comp": "17896441",
+    "content": "7a96ca3d"
   },
   "/getting-started/wallet-setup-392": {
-    "__comp": "__comp---theme-doc-item-178-a40",
-    "content": "content---getting-started-wallet-setupf-4-b-fec"
-  },
-  "/security/best-practices-644": {
-    "__comp": "__comp---theme-doc-item-178-a40",
-    "content": "content---security-best-practices-5-d-1-bcd"
-  },
-  "/security/bug-bounty-fa7": {
-    "__comp": "__comp---theme-doc-item-178-a40",
-    "content": "content---security-bug-bounty-059-7b6"
+    "__comp": "17896441",
+    "content": "f4bed809"
   },
   "/support/contact-a44": {
-    "__comp": "__comp---theme-doc-item-178-a40",
-    "content": "content---support-contact-5-d-6-76a"
+    "__comp": "17896441",
+    "content": "5d6865b0"
   },
   "/support/faq-400": {
-    "__comp": "__comp---theme-doc-item-178-a40",
-    "content": "content---support-faq-679-3a5"
+    "__comp": "17896441",
+    "content": "67992901"
   },
   "/support/troubleshooting-5f1": {
-    "__comp": "__comp---theme-doc-item-178-a40",
-    "content": "content---support-troubleshooting-190-882"
+    "__comp": "17896441",
+    "content": "190a27a8"
   },
   "/user-guide/governance-a7a": {
-    "__comp": "__comp---theme-doc-item-178-a40",
-    "content": "content---user-guide-governance-5-b-0-3e2"
+    "__comp": "17896441",
+    "content": "5b016f36"
   },
   "/user-guide/liquid-tokens-a04": {
-    "__comp": "__comp---theme-doc-item-178-a40",
-    "content": "content---user-guide-liquid-tokens-381-6c9"
+    "__comp": "17896441",
+    "content": "3810b890"
   },
   "/user-guide/staking-apt-109": {
-    "__comp": "__comp---theme-doc-item-178-a40",
-    "content": "content---user-guide-staking-apt-19-a-2fe"
+    "__comp": "17896441",
+    "content": "19a6bbd9"
   },
   "/user-guide/staking-usdc-345": {
-    "__comp": "__comp---theme-doc-item-178-a40",
-    "content": "content---user-guide-staking-usdc-124-684"
+    "__comp": "17896441",
+    "content": "1247a50d"
   },
   "/user-guide/unstaking-7f5": {
-    "__comp": "__comp---theme-doc-item-178-a40",
-    "content": "content---user-guide-unstaking-328-281"
+    "__comp": "17896441",
+    "content": "3287fc70"
   },
   "/-fc9": {
-    "__comp": "__comp---theme-doc-item-178-a40",
-    "content": "content---0-e-3-279"
+    "__comp": "17896441",
+    "content": "0e384e19"
   }
 }

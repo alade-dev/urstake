@@ -14,5 +14,14 @@
   "sidebarPosition": 2,
   "frontMatter": {
     "sidebar_position": 2
+  },
+  "sidebar": "tutorialSidebar",
+  "previous": {
+    "title": "Smart Contract Architecture",
+    "permalink": "/developer/smart-contracts"
+  },
+  "next": {
+    "title": "Integration Guide",
+    "permalink": "/developer/integration"
   }
 }

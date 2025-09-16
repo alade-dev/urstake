@@ -75,7 +75,7 @@ Get help from the UrStake team and community through our various support channel
 - Integration tutorials
 - Best practices
 
-**FAQ**: [docs.urstake.com/support/faq](/docs/support/faq)
+**FAQ**: [docs.urstake.com/support/faq](/support/faq)
 
 - Common questions and answers
 - Step-by-step guides
@@ -93,8 +93,8 @@ Get help from the UrStake team and community through our various support channel
 
 **Before Contacting Support**:
 
-1. ✅ Check the [FAQ](/docs/support/faq) for common questions
-2. ✅ Review [troubleshooting guide](/docs/support/troubleshooting)
+1. ✅ Check the [FAQ](/support/faq) for common questions
+2. ✅ Review [troubleshooting guide](/support/troubleshooting)
 3. ✅ Search Discord for similar issues
 4. ✅ Verify you're using official UrStake interfaces
 
@@ -189,18 +189,6 @@ Thanks for your help!
 - Issue tracking
 - Feature requests
 - Community contributions
-
-**API Documentation**: [docs.urstake.com/api](/docs/developer/api-reference)
-
-- Complete API reference
-- Interactive examples
-- Rate limits and usage
-
-**SDK Documentation**: [docs.urstake.com/sdk](/docs/developer/sdk)
-
-- Multiple language SDKs
-- Integration examples
-- Best practices
 
 ### 🤝 Integration Assistance
 

@@ -73,11 +73,11 @@ export default {
           "items": [
             {
               "label": "Getting Started",
-              "to": "/getting-started"
+              "to": "/getting-started/overview"
             },
             {
-              "label": "API Reference",
-              "to": "/api"
+              "label": "Smart Contracts",
+              "to": "/developer/smart-contracts"
             }
           ]
         },

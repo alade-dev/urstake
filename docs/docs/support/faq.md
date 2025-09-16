@@ -237,22 +237,7 @@ The only additional costs are standard Aptos network gas fees (~0.01-0.02 APT pe
 - 🔌 **API**: RESTful API for off-chain applications
 - 🎨 **UI Components**: Pre-built React components
 
-Check our [Developer Documentation](/docs/developer) for detailed integration guides.
-
-### Is there an API available?
-
-Yes! UrStake provides a comprehensive REST API:
-
-**Base URL**: `https://api.urstake.com/v1`
-
-**Key Endpoints**:
-
-- `GET /exchange-rates` - Current staking rates
-- `GET /users/{address}/positions` - User portfolio
-- `GET /protocol/stats` - Protocol statistics
-- `GET /market/pools` - Liquidity pool data
-
-Full API documentation available at [docs.urstake.com/api](/docs/developer/api-reference).
+Check our [Developer Documentation](/developer/smart-contracts) for detailed integration guides.
 
 ## Troubleshooting
 
@@ -297,38 +282,6 @@ Full API documentation available at [docs.urstake.com/api](/docs/developer/api-r
 3. **Check Pool Depth**: Verify sufficient liquidity in trading pools
 4. **Try Different DEX**: Some DEXs have deeper liquidity
 5. **Use Direct Unstaking**: For large amounts, consider protocol unstaking
-
-## Governance
-
-### How does UrStake governance work?
-
-UrStake uses a **token-based governance system**:
-
-- **Governance Token**: UR tokens for voting
-- **Proposal Process**: Community-driven proposals
-- **Voting Power**: Based on UR token holdings
-- **Execution**: Automatic execution of passed proposals
-
-### How do I participate in governance?
-
-**Steps to Participate**:
-
-1. **Earn UR Tokens**: Stake APT/USDC to earn UR rewards
-2. **Access Governance**: Visit [gov.urstake.com](https://gov.urstake.com)
-3. **Review Proposals**: Read active proposals and discussions
-4. **Vote**: Cast your votes on proposals
-5. **Delegate**: Or delegate voting power to trusted community members
-
-### What can governance control?
-
-**Governance Powers**:
-
-- ✅ Protocol parameter changes (fees, limits)
-- ✅ Yield strategy modifications
-- ✅ Treasury fund allocation
-- ✅ New feature proposals
-- ✅ Emergency response procedures
-- ❌ Individual user fund access (never possible)
 
 ## Support
 

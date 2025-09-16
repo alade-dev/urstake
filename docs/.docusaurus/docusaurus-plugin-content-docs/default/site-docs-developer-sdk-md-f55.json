@@ -14,5 +14,14 @@
   "sidebarPosition": 4,
   "frontMatter": {
     "sidebar_position": 4
+  },
+  "sidebar": "tutorialSidebar",
+  "previous": {
+    "title": "Integration Guide",
+    "permalink": "/developer/integration"
+  },
+  "next": {
+    "title": "Security Best Practices",
+    "permalink": "/security/best-practices"
   }
 }

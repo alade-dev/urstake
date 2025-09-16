@@ -11,18 +11,6 @@
           "mainDocId": "intro",
           "docs": [
             {
-              "id": "developer/api-reference",
-              "path": "/developer/api-reference"
-            },
-            {
-              "id": "developer/integration",
-              "path": "/developer/integration"
-            },
-            {
-              "id": "developer/sdk",
-              "path": "/developer/sdk"
-            },
-            {
               "id": "developer/smart-contracts",
               "path": "/developer/smart-contracts",
               "sidebar": "tutorialSidebar"
@@ -46,14 +34,6 @@
               "id": "intro",
               "path": "/",
               "sidebar": "tutorialSidebar"
-            },
-            {
-              "id": "security/best-practices",
-              "path": "/security/best-practices"
-            },
-            {
-              "id": "security/bug-bounty",
-              "path": "/security/bug-bounty"
             },
             {
               "id": "support/contact",

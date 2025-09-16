@@ -9,6 +9,7 @@ UrStake revolutionizes staking on the Aptos blockchain by providing liquid staki
 ## The Problem We Solve
 
 Traditional staking presents users with a difficult choice:
+
 - **Stake tokens** to earn rewards but lose liquidity
 - **Keep tokens liquid** for trading but miss out on staking rewards
 
@@ -17,11 +18,13 @@ Traditional staking presents users with a difficult choice:
 UrStake provides **liquid staking tokens** that represent your staked position:
 
 ### For APT Staking
+
 - Stake APT → Receive stAPT
 - stAPT accrues staking rewards automatically
 - Trade stAPT anytime without unstaking delays
 
-### For USDC Staking  
+### For USDC Staking
+
 - Stake USDC → Receive stUSDC
 - stUSDC earns yield through various DeFi strategies
 - Instant liquidity through stUSDC trading
@@ -29,18 +32,23 @@ UrStake provides **liquid staking tokens** that represent your staked position:
 ## Core Benefits
 
 ### 🔄 **Liquidity Preservation**
+
 Your staked assets remain liquid through tradeable derivative tokens
 
 ### 📈 **Continuous Rewards**
+
 Earn staking rewards 24/7 without interruption
 
 ### ⚡ **Instant Access**
+
 No waiting periods - access your funds immediately
 
 ### 🎯 **Optimized Yields**
+
 Smart contracts automatically compound rewards for maximum returns
 
 ### 🏛️ **Governance Rights**
+
 Participate in protocol governance while staying liquid
 
 ## How It Works
@@ -68,16 +76,15 @@ graph TD
 
 ## Supported Assets
 
-| Asset | Liquid Token | Current APY | Features |
-|-------|-------------|-------------|----------|
-| APT   | stAPT       | 8.00%+      | Auto-compounding, DEX trading |
-| USDC  | stUSDC      | 5.50%+      | Stable yield, DeFi integration |
+| Asset | Liquid Token | Current APY | Features                       |
+| ----- | ------------ | ----------- | ------------------------------ |
+| APT   | stAPT        | 8.00%+      | Auto-compounding, DEX trading  |
+| USDC  | stUSDC       | 5.50%+      | Stable yield, DeFi integration |
 
 ## Next Steps
 
 Ready to start? Choose your path:
 
 - **New User**: [Set up your wallet](./wallet-setup)
-- **APT Holder**: [Learn APT staking](../user-guide/staking-apt)  
+- **APT Holder**: [Learn APT staking](../user-guide/staking-apt)
 - **USDC Holder**: [Learn USDC staking](../user-guide/staking-usdc)
-- **Developer**: [Explore our API](../developer/api-reference)

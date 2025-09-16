@@ -14,5 +14,14 @@
   "sidebarPosition": 3,
   "frontMatter": {
     "sidebar_position": 3
+  },
+  "sidebar": "tutorialSidebar",
+  "previous": {
+    "title": "Security Best Practices",
+    "permalink": "/security/best-practices"
+  },
+  "next": {
+    "title": "Frequently Asked Questions",
+    "permalink": "/support/faq"
   }
 }

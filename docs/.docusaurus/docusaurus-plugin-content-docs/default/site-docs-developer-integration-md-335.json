@@ -14,5 +14,14 @@
   "sidebarPosition": 3,
   "frontMatter": {
     "sidebar_position": 3
+  },
+  "sidebar": "tutorialSidebar",
+  "previous": {
+    "title": "API Reference",
+    "permalink": "/developer/api-reference"
+  },
+  "next": {
+    "title": "SDK Documentation",
+    "permalink": "/developer/sdk"
   }
 }
